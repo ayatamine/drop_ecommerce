@@ -2,38 +2,31 @@
 <div>
    <div id="tt-pageContent">
 
-    <div class="container-indent0">
+    <div class="container-indent0" v-if="categories">
 		<div class="container-fluid">
 			<div class="row tt-layout-promo-box">
 				<div class="col-sm-12 col-md-6">
 					<div class="row">
 						<div class="col-sm-6">
-							<a href="listing-left-column.html" class="tt-promo-box tt-one-child hover-type-2">
-								<img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg" alt="">
+							<a href="listing-left-column.html" v-for="i in 2" :key="i" class="tt-promo-box tt-one-child hover-type-2">
+								<img src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg"  class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-01.jpg'"
+								data-src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg" alt="">
 								<div class="tt-description">
 									<div class="tt-description-wrapper">
 										<div class="tt-background"></div>
-										<div class="tt-title-small">SALE</div>
-									</div>
-								</div>
-							</a>
-							<a href="listing-left-column.html" class="tt-promo-box tt-one-child hover-type-2">
-								<img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/promo/index-promo-img-02.jpg" alt="">
-								<div class="tt-description">
-									<div class="tt-description-wrapper">
-										<div class="tt-background"></div>
-										<div class="tt-title-small">NEW</div>
+										<div class="tt-title-small">{{categories[i].name.ar}}</div>
 									</div>
 								</div>
 							</a>
 						</div>
 						<div class="col-sm-6">
-							<a href="listing-left-column.html" class="tt-promo-box tt-one-child hover-type-2">
-								<img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg" alt="">
+							<a href="listing-left-column.html"  class="tt-promo-box tt-one-child hover-type-2">
+								<img src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg" class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'"
+								 data-src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg" alt="">
 								<div class="tt-description">
 									<div class="tt-description-wrapper">
 										<div class="tt-background"></div>
-										<div class="tt-title-small">WOMEN</div>
+										<div class="tt-title-small">{{ categories[3] ? categories[3].name.en : '' }}</div>
 									</div>
 								</div>
 							</a>
@@ -42,35 +35,26 @@
 				</div>
 				<div class="col-sm-12 col-md-6">
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-6" v-for="i in (0,2)" :key="i">
 							<a href="listing-left-column.html" class="tt-promo-box tt-one-child hover-type-2">
-								<img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg" alt="">
+								<img src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg" class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-04.jpg'"
+								data-src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg" alt="">
 								<div class="tt-description">
 									<div class="tt-description-wrapper">
 										<div class="tt-background"></div>
-										<div class="tt-title-small">MEN</div>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-sm-6">
-							<a href="listing-left-column.html" class="tt-promo-box tt-one-child hover-type-2">
-								<img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/promo/index-promo-img-05.jpg" alt="">
-								<div class="tt-description">
-									<div class="tt-description-wrapper">
-										<div class="tt-background"></div>
-										<div class="tt-title-small">ACCESSORIES</div>
+										<div class="tt-title-small">{{ categories.slice(3)[i].name.ar }}</div>
 									</div>
 								</div>
 							</a>
 						</div>
 						<div class="col-sm-12">
 							<a href="listing-left-column.html" class="tt-promo-box tt-one-child">
-								<img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg" alt="">
+								<img src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg" class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-06.jpg'"
+								 data-src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg" alt="">
 								<div class="tt-description">
 									<div class="tt-description-wrapper">
 										<div class="tt-background"></div>
-										<div class="tt-title-small">SHOES</div>
+										<div class="tt-title-small">{{ categories.slice(6)[0] ? categories.slice(6)[0].name.ar : '' }}</div>
 									</div>
 								</div>
 							</a>
@@ -83,19 +67,24 @@
 	<div class="container-indent">
 		<div class="container container-fluid-custom-mobile-padding">
 			<div class="tt-block-title">
-				<h1 class="tt-title">TRENDING</h1>
-				<div class="tt-description">TOP VIEW IN THIS WEEK</div>
+				<h1 class="tt-title">المميزة</h1>
+				<div class="tt-description">أكثر مشاهدة هدا الاسبوع</div>
 			</div>
 			<div class="row tt-layout-product-item">
-				<div class="col-6 col-md-4 col-lg-3">
+				<div class="col-6 col-md-4 col-lg-3" v-for="(p,index) in featuredProducts" :key="index">
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
 							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
 							<a href="#" class="tt-btn-wishlist"></a>
 							<a href="#" class="tt-btn-compare"></a>
 							<a href="product.html">
-								<span class="tt-img"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-03.jpg" alt=""></span>
-								<span class="tt-img-roll-over"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-03-02.jpg" alt=""></span>
+								<span class="tt-img"  v-if="loading"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-03.jpg" alt=""></span>
+								<span class="tt-img-roll-over" v-if="loading"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-03-02.jpg" alt=""></span>
+								<span class="tt-img"  v-if="!loading"><img onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'"
+								:src="p.images[0]" data-src="wokiee_ecommerce/images/product/product-03.jpg" alt=""></span>
+								<span class="tt-img-roll-over" v-if="!loading"><img onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'"
+								:src="p.images[0]"  data-src="wokiee_ecommerce/images/product/product-03-02.jpg" alt=""></span>
+
 								<span class="tt-label-location">
 									<span class="tt-label-new">New</span>
 								</span>
@@ -104,7 +93,7 @@
 						<div class="tt-description">
 							<div class="tt-row">
 								<ul class="tt-add-info">
-									<li><a href="#">T-SHIRTS</a></li>
+									<li><a href="#">{{p.categories[0].name.ar }}</a></li>
 								</ul>
 								<div class="tt-rating">
 									<i class="icon-star"></i>
@@ -114,7 +103,7 @@
 									<i class="icon-star-empty"></i>
 								</div>
 							</div>
-							<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
+							<h2 class="tt-title"><a href="product.html">{{p.name.ar}}</a></h2>
 							<div class="tt-product-inside-hover">
 								<div class="tt-row-btn">
 									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
@@ -128,7 +117,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-6 col-md-4 col-lg-3">
+				<!-- <div class="col-6 col-md-4 col-lg-3">
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
 							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
@@ -217,212 +206,12 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-6 col-md-4 col-lg-3">
-					<div class="tt-product thumbprod-center">
-						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
-							<a href="product.html">
-								<span class="tt-img"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-01.jpg" alt=""></span>
-								<span class="tt-img-roll-over"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-01-02.jpg" alt=""></span>
-								<span class="tt-label-location">
-									<span class="tt-label-sale">Sale 15%</span>
-								</span>
-							</a>
-						</div>
-						<div class="tt-description">
-							<div class="tt-row">
-								<ul class="tt-add-info">
-									<li><a href="#">T-SHIRTS</a></li>
-								</ul>
-								<div class="tt-rating">
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-								</div>
-							</div>
-							<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
-							<div class="tt-price">
-								<span class="new-price">$14</span>
-								<span class="old-price">$24</span>
-							</div>
-							<div class="tt-product-inside-hover">
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
-								</div>
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
-									<a href="#" class="tt-btn-compare"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-md-4 col-lg-3">
-					<div class="tt-product thumbprod-center">
-						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
-							<a href="product.html">
-								<span class="tt-img"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-26.jpg" alt=""></span>
-								<span class="tt-img-roll-over"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-26-01.jpg" alt=""></span>
-							</a>
-						</div>
-						<div class="tt-description">
-							<div class="tt-row">
-								<ul class="tt-add-info">
-									<li><a href="#">T-SHIRTS</a></li>
-								</ul>
-							</div>
-							<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
-							<div class="tt-price">
-								$56
-							</div>
-							<div class="tt-product-inside-hover">
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
-								</div>
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
-									<a href="#" class="tt-btn-compare"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-md-4 col-lg-3">
-					<div class="tt-product thumbprod-center">
-						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
-							<a href="product.html">
-								<span class="tt-img"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-45.jpg" alt=""></span>
-								<span class="tt-img-roll-over"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-45-01.jpg" alt=""></span>
-							</a>
-						</div>
-						<div class="tt-description">
-							<div class="tt-row">
-								<ul class="tt-add-info">
-									<li><a href="#">T-SHIRTS</a></li>
-								</ul>
-							</div>
-							<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
-							<div class="tt-price">
-								$78
-							</div>
-							<div class="tt-product-inside-hover">
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
-								</div>
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
-									<a href="#" class="tt-btn-compare"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-md-4 col-lg-3">
-					<div class="tt-product thumbprod-center">
-						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
-							<a href="product.html">
-								<span class="tt-img"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-14.jpg" alt=""></span>
-								<span class="tt-img-roll-over"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-14-01.jpg" alt=""></span>
-							</a>
-							<div class="tt-countdown_box">
-								<div class="tt-countdown_inner">
-									<div class="tt-countdown"
-										data-date="2018-11-01"
-										data-year="Yrs"
-										data-month="Mths"
-										data-week="Wk"
-										data-day="Day"
-										data-hour="Hrs"
-										data-minute="Min"
-										data-second="Sec"></div>
-								</div>
-							</div>
-						</div>
-						<div class="tt-description">
-							<div class="tt-row">
-								<ul class="tt-add-info">
-									<li><a href="#">T-SHIRTS</a></li>
-								</ul>
-								<div class="tt-rating">
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-									<i class="icon-star-half"></i>
-									<i class="icon-star-empty"></i>
-								</div>
-							</div>
-							<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
-							<div class="tt-price">
-								$51
-							</div>
-							<div class="tt-product-inside-hover">
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
-								</div>
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
-									<a href="#" class="tt-btn-compare"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-md-4 col-lg-3">
-					<div class="tt-product thumbprod-center">
-						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
-							<a href="product.html">
-								<span class="tt-img"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-15.jpg" alt=""></span>
-								<span class="tt-img-roll-over"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-15-01.jpg" alt=""></span>
-							</a>
-						</div>
-						<div class="tt-description">
-							<div class="tt-row">
-								<ul class="tt-add-info">
-									<li><a href="#">T-SHIRTS</a></li>
-								</ul>
-							</div>
-							<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
-							<div class="tt-price">
-								$12
-							</div>
-							<div class="tt-product-inside-hover">
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
-								</div>
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
-									<a href="#" class="tt-btn-compare"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				</div> -->
+
 			</div>
 		</div>
 	</div>
-    <div class="container-indent">
+    <!-- <div class="container-indent">
 		<div class="container-fluid-custom">
 			<div class="row tt-layout-promo-box">
 				<div class="col-sm-6 col-md-4">
@@ -464,7 +253,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="container-indent">
 		<div class="container container-fluid-custom-mobile-padding">
 			<div class="tt-block-title">
@@ -818,31 +607,38 @@
 		</div>
 	</div>
    </div>
+   <modalViewProduct></modalViewProduct>
 </div>
 
 
 </template>
 <script>
-
+import modalViewProduct from './modals/ModalViewProduct.vue'
 
 export default {
   data(){
       return {
 
-          loading :false
+		  loading :false,
       }
+  },
+  components:{
+	  modalViewProduct
   },
   created(){
 
+	  this.setCategories();
   },
   mounted(){
-      this.getFirstProducts();
+	  this.loading = true;
+	  this.getFirstProducts();
   },
   methods:{
       getFirstProducts(){
-          let sessionproducts = localStorage.getItem('products');
+          let sessionproducts = localStorage.getItem('featuredProducts');
            if(!!sessionproducts){
-              this.$store.commit('setProducts',JSON.parse(sessionproducts))
+			  this.$store.commit('setFeateredProducts',JSON.parse(sessionproducts))
+			  this.loading = false;
               //this.products = JSON.parse(sessionproducts)
               //this.$store.state.currentProducts = JSON.parse(sessionproducts).splice(1,10)
            }else{
@@ -865,20 +661,56 @@ export default {
             if(!res.data.products){
                  this.fetchfirstProducts();
             }else{
-			   this.$store.commit('setProducts',res.data.products)
+			   this.$store.commit('setFeateredProducts',res.data.products)
 
-            }
+			}
+			this.loading = false;
           })
           .catch(error => {
                     this.loading = false
                     //do whatever with response
                 })
-      },
+	  },
+	  setCategories(){
+		 this.$store.dispatch('setCategories');
+		// console.log($('.cateimg').data('src'))
+	  },
+	  getcatsrc(catname){
+        let products = this.featuredProducts
+
+          let fil = products
+          .filter((element) =>
+              element.categories.some((c) => c.name.en == catname))
+          .map(element => {
+              return Object.assign({}, element, {categories : element.categories.filter(subElement => subElement.name.en == catname)});
+
+          });
+          //get the image of first product
+          let firstp = fil[Math.floor(Math.random() * (fil.length - 1))];
+          return firstp.images[0];
+     }
   },
   computed:{
-      products(){
-          return this.$store.getters.products
-      }
+      featuredProducts(){
+          return this.$store.getters.featuredProducts
+	  },
+      categories(){
+          return this.$store.getters.categories
+	  },
   }
 }
+$(document).on('mouseenter','.tt-product.thumbprod-center',function(){
+	console.log('yes')
+  $('.tt-product.thumbprod-center').removeClass('hovered')
+  $(this).addClass('hovered')
+})
 </script>
+<style  scoped>
+.tt-img img,.tt-img-roll-over img{height: 22rem !important;}
+.tt-product.thumbprod-center.hovered .tt-description{
+  top : -69px;
+}
+.tt-product.thumbprod-center.hovered .tt-product-inside-hover{
+opacity: 1;
+}
+</style>

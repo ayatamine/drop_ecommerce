@@ -77,6 +77,7 @@ const store = new Vuex.Store({
       categories :[],
       activeCategory:'',
       products :{},
+      featuredProducts :{},
       currentProducts :[],
       currencies :{},
       currenciesSigns :{
@@ -97,6 +98,12 @@ const store = new Vuex.Store({
     getters:{
        products(state){
             return state.products
+       },
+       featuredProducts(state){
+            return state.featuredProducts
+       },
+       categories(state){
+         return state.categories;
        }
     },
     mutations:{
@@ -104,6 +111,34 @@ const store = new Vuex.Store({
         state.products = products;
         localStorage.setItem('products',JSON.stringify(products))
       },
+      setFeateredProducts(state,products){
+        state.featuredProducts = products;
+        localStorage.setItem('featuredProducts',JSON.stringify(products))
+      },
+      setCategories(state,payload){
+           state.categories = payload;
+      }
+
+    },
+    actions:{
+      setCategories({commit}){
+        let sessionCategories =localStorage.getItem('categories')
+        if(!sessionCategories){
+          axios.get('/getCategories')
+          .then(res => {
+              //console.log(res)
+              localStorage.setItem('categories',JSON.stringify(res.data.categories))
+              commit('setCategories',res.data.categories)
+          })
+          .catch(error => {
+                    this.loading = false
+                    console.log(error)
+                    //do whatever with response
+                })
+        }else{
+              commit('setCategories',JSON.parse(sessionCategories));
+        }
+        }
 
     }
 })

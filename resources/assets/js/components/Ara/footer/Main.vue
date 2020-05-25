@@ -109,7 +109,7 @@
 					<div class="tt-col-item tt-logo-col">
 						<!-- logo -->
 						<a class="tt-logo tt-logo-alignment" href="index.html">
-							<img  src="images/custom/logo.png" alt="">
+							<img  src="wokiee_ecommerce/images/custom/logo.png" alt="">
 						</a>
 						<!-- /logo -->
 					</div>
