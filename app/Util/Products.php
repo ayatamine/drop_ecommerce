@@ -12,14 +12,14 @@ class Products {
             '87f75780-c89f-11e9-989e-ffa75a9513df',
             '781b0a6b-8797-41a4-bf3e-4e3dc09330ff'
         );
-       
+
     }
     public function getProducts(){
         $products = $this->mp->getProducts();
         return $products;
     }
     public function get10Products(){
-        $products = $this->mp->getProducts(10);
+        $products = $this->mp->getProducts(14);
         return $products;
     }
     public function productsCount(){
@@ -34,7 +34,7 @@ class Products {
     public function updateProduct($sku){
         return $this->mp->put('/catalog/products/'.$sku,['name.ar'=>"rest"]);
     }
-    
+
     public function getCategories(){
         return $this->mp->get('/catalog/categories');
     }
@@ -42,21 +42,21 @@ class Products {
     public function payments($id){
         return $this->mp->post('payments/'.$id);
     }
-    //orders 
+    //orders
     public function getOrders(){
         return $this->mp->get('/orders');
     }
     public function createOrder(Request $request){
-        
+
         $res = $this->mp->post('/orders',$request->all());
-        
+
         return response()->json($res);
     }
     public function getOrder($id){
         return $this->mp->get('/orders'.'/'.$id);
     }
     public function cancelOrder($id){
-        $res =  $this->mp->delete('/orders'.'/'.$id); 
+        $res =  $this->mp->delete('/orders'.'/'.$id);
         dd($res);
     }
     public function getCurrencies(){
@@ -66,6 +66,6 @@ class Products {
         $res = $this->mp->get('/shipment/rules');
         dd($res);
     }
- 
+
 
 }

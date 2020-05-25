@@ -50928,300 +50928,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -52203,142 +51909,294 @@ var render = function() {
             [
               _vm._m(0),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "row tt-layout-product-item" },
-                _vm._l(_vm.featuredProducts, function(p, index) {
-                  return _c(
+              _vm.featuredProducts.length
+                ? _c(
                     "div",
-                    { key: index, staticClass: "col-6 col-md-4 col-lg-3" },
-                    [
-                      _c(
+                    { staticClass: "row tt-layout-product-item" },
+                    _vm._l(_vm.featuredProducts.slice(0, 8), function(
+                      p,
+                      index
+                    ) {
+                      return _c(
                         "div",
-                        { staticClass: "tt-product thumbprod-center" },
+                        { key: index, staticClass: "col-6 col-md-4 col-lg-3" },
                         [
-                          _c("div", { staticClass: "tt-image-box" }, [
-                            _c("a", {
-                              staticClass: "tt-btn-quickview",
-                              attrs: {
-                                href: "#",
-                                "data-toggle": "modal",
-                                "data-target": "#ModalquickView"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("a", {
-                              staticClass: "tt-btn-wishlist",
-                              attrs: { href: "#" }
-                            }),
-                            _vm._v(" "),
-                            _c("a", {
-                              staticClass: "tt-btn-compare",
-                              attrs: { href: "#" }
-                            }),
-                            _vm._v(" "),
-                            _c("a", { attrs: { href: "product.html" } }, [
-                              _vm.loading
-                                ? _c("span", { staticClass: "tt-img" }, [
-                                    _c("img", {
-                                      attrs: {
-                                        src:
-                                          "wokiee_ecommerce/images/loader.svg",
-                                        "data-src":
-                                          "wokiee_ecommerce/images/product/product-03.jpg",
-                                        alt: ""
-                                      }
-                                    })
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.loading
-                                ? _c(
-                                    "span",
-                                    { staticClass: "tt-img-roll-over" },
-                                    [
-                                      _c("img", {
-                                        attrs: {
-                                          src:
-                                            "wokiee_ecommerce/images/loader.svg",
-                                          "data-src":
-                                            "wokiee_ecommerce/images/product/product-03-02.jpg",
-                                          alt: ""
-                                        }
-                                      })
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !_vm.loading
-                                ? _c("span", { staticClass: "tt-img" }, [
-                                    _c("img", {
-                                      attrs: {
-                                        onerror:
-                                          "this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'",
-                                        src: p.images[0],
-                                        "data-src":
-                                          "wokiee_ecommerce/images/product/product-03.jpg",
-                                        alt: ""
-                                      }
-                                    })
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !_vm.loading
-                                ? _c(
-                                    "span",
-                                    { staticClass: "tt-img-roll-over" },
-                                    [
-                                      _c("img", {
-                                        attrs: {
-                                          onerror:
-                                            "this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'",
-                                          src: p.images[0],
-                                          "data-src":
-                                            "wokiee_ecommerce/images/product/product-03-02.jpg",
-                                          alt: ""
-                                        }
-                                      })
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm._m(1, true)
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "tt-description" }, [
-                            _c("div", { staticClass: "tt-row" }, [
-                              _c("ul", { staticClass: "tt-add-info" }, [
-                                _c("li", [
-                                  _c("a", { attrs: { href: "#" } }, [
-                                    _vm._v(_vm._s(p.categories[0].name.ar))
-                                  ])
+                          _c(
+                            "div",
+                            { staticClass: "tt-product thumbprod-center" },
+                            [
+                              _c("div", { staticClass: "tt-image-box" }, [
+                                _c("a", {
+                                  staticClass: "tt-btn-quickview",
+                                  attrs: {
+                                    href: "#",
+                                    "data-toggle": "modal",
+                                    "data-target": "#ModalquickView"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("a", {
+                                  staticClass: "tt-btn-wishlist",
+                                  attrs: { href: "#" }
+                                }),
+                                _vm._v(" "),
+                                _c("a", {
+                                  staticClass: "tt-btn-compare",
+                                  attrs: { href: "#" }
+                                }),
+                                _vm._v(" "),
+                                _c("a", { attrs: { href: "product.html" } }, [
+                                  _vm.loading
+                                    ? _c("span", { staticClass: "tt-img" }, [
+                                        _c("img", {
+                                          attrs: {
+                                            src:
+                                              "wokiee_ecommerce/images/loader.svg",
+                                            "data-src":
+                                              "wokiee_ecommerce/images/product/product-03.jpg",
+                                            alt: ""
+                                          }
+                                        })
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.loading
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "tt-img-roll-over" },
+                                        [
+                                          _c("img", {
+                                            attrs: {
+                                              src:
+                                                "wokiee_ecommerce/images/loader.svg",
+                                              "data-src":
+                                                "wokiee_ecommerce/images/product/product-03-02.jpg",
+                                              alt: ""
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !_vm.loading
+                                    ? _c("span", { staticClass: "tt-img" }, [
+                                        _c("img", {
+                                          attrs: {
+                                            onerror:
+                                              "this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'",
+                                            src: p.images[0],
+                                            "data-src":
+                                              "wokiee_ecommerce/images/product/product-03.jpg",
+                                            alt: ""
+                                          }
+                                        })
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !_vm.loading
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "tt-img-roll-over" },
+                                        [
+                                          _c("img", {
+                                            attrs: {
+                                              onerror:
+                                                "this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'",
+                                              src: p.images[0],
+                                              "data-src":
+                                                "wokiee_ecommerce/images/product/product-03-02.jpg",
+                                              alt: ""
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm._m(1, true)
                                 ])
                               ]),
                               _vm._v(" "),
-                              _vm._m(2, true)
-                            ]),
-                            _vm._v(" "),
-                            _c("h2", { staticClass: "tt-title" }, [
-                              _c("a", { attrs: { href: "product.html" } }, [
-                                _vm._v(_vm._s(p.name.ar))
+                              _c("div", { staticClass: "tt-description" }, [
+                                _c("div", { staticClass: "tt-row" }, [
+                                  _c("ul", { staticClass: "tt-add-info" }, [
+                                    _c("li", [
+                                      _c("a", { attrs: { href: "#" } }, [
+                                        _vm._v(_vm._s(p.categories[0].name.ar))
+                                      ])
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._m(2, true)
+                                ]),
+                                _vm._v(" "),
+                                _c("h2", { staticClass: "tt-title" }, [
+                                  _c("a", { attrs: { href: "product.html" } }, [
+                                    _vm._v(_vm._s(p.name.ar))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(3, true)
                               ])
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(3, true)
-                          ])
+                            ]
+                          )
                         ]
                       )
-                    ]
+                    }),
+                    0
                   )
-                }),
-                0
-              )
+                : _vm._e()
             ]
           )
         ]),
         _vm._v(" "),
-        _vm._m(4)
+        _vm._m(4),
+        _vm._v(" "),
+        _c("div", { staticClass: "container-indent" }, [
+          _c(
+            "div",
+            { staticClass: "container container-fluid-custom-mobile-padding" },
+            [
+              _vm._m(5),
+              _vm._v(" "),
+              _vm.featuredProducts.length
+                ? _c(
+                    "div",
+                    { staticClass: "row tt-layout-product-item" },
+                    _vm._l(_vm.featuredProducts.slice(8, 14), function(
+                      p,
+                      index
+                    ) {
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "col-6 col-md-4 col-lg-3" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "tt-product thumbprod-center" },
+                            [
+                              _c("div", { staticClass: "tt-image-box" }, [
+                                _c("a", {
+                                  staticClass: "tt-btn-quickview",
+                                  attrs: {
+                                    href: "#",
+                                    "data-toggle": "modal",
+                                    "data-target": "#ModalquickView"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("a", {
+                                  staticClass: "tt-btn-wishlist",
+                                  attrs: { href: "#" }
+                                }),
+                                _vm._v(" "),
+                                _c("a", {
+                                  staticClass: "tt-btn-compare",
+                                  attrs: { href: "#" }
+                                }),
+                                _vm._v(" "),
+                                _c("a", { attrs: { href: "product.html" } }, [
+                                  _vm.loading
+                                    ? _c("span", { staticClass: "tt-img" }, [
+                                        _c("img", {
+                                          attrs: {
+                                            src:
+                                              "wokiee_ecommerce/images/loader.svg",
+                                            "data-src":
+                                              "wokiee_ecommerce/images/product/product-03.jpg",
+                                            alt: ""
+                                          }
+                                        })
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.loading
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "tt-img-roll-over" },
+                                        [
+                                          _c("img", {
+                                            attrs: {
+                                              src:
+                                                "wokiee_ecommerce/images/loader.svg",
+                                              "data-src":
+                                                "wokiee_ecommerce/images/product/product-03-02.jpg",
+                                              alt: ""
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !_vm.loading
+                                    ? _c("span", { staticClass: "tt-img" }, [
+                                        _c("img", {
+                                          attrs: {
+                                            onerror:
+                                              "this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'",
+                                            src: p.images[0],
+                                            "data-src":
+                                              "wokiee_ecommerce/images/product/product-03.jpg",
+                                            alt: ""
+                                          }
+                                        })
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  !_vm.loading
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "tt-img-roll-over" },
+                                        [
+                                          _c("img", {
+                                            attrs: {
+                                              onerror:
+                                                "this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'",
+                                              src: p.images[0],
+                                              "data-src":
+                                                "wokiee_ecommerce/images/product/product-03-02.jpg",
+                                              alt: ""
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm._m(6, true)
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "tt-description" }, [
+                                _c("div", { staticClass: "tt-row" }, [
+                                  _c("ul", { staticClass: "tt-add-info" }, [
+                                    _c("li", [
+                                      _c("a", { attrs: { href: "#" } }, [
+                                        _vm._v(_vm._s(p.categories[0].name.ar))
+                                      ])
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._m(7, true)
+                                ]),
+                                _vm._v(" "),
+                                _c("h2", { staticClass: "tt-title" }, [
+                                  _c("a", { attrs: { href: "product.html" } }, [
+                                    _vm._v(_vm._s(p.name.ar))
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(8, true)
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                : _vm._e()
+            ]
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("modalViewProduct")
@@ -52424,1040 +52282,193 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container-indent" }, [
-      _c(
-        "div",
-        { staticClass: "container container-fluid-custom-mobile-padding" },
-        [
-          _c("div", { staticClass: "tt-block-title" }, [
-            _c("h2", { staticClass: "tt-title" }, [_vm._v("BEST SELLER")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "tt-description" }, [
-              _vm._v("TOP SALE IN THIS WEEK")
-            ])
+      _c("div", { staticClass: "container-fluid-custom" }, [
+        _c("div", { staticClass: "row tt-layout-promo-box" }, [
+          _c("div", { staticClass: "col-sm-6 col-md-4" }, [
+            _c(
+              "a",
+              {
+                staticClass: "tt-promo-box",
+                attrs: { href: "listing-left-column.html" }
+              },
+              [
+                _c("img", {
+                  attrs: {
+                    src: "wokiee_ecommerce/images/promo/index-promo-img-07.jpg",
+                    "data-src":
+                      "wokiee_ecommerce/images/promo/index-promo-img-07.jpg",
+                    alt: ""
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "tt-description" }, [
+                  _c("div", { staticClass: "tt-description-wrapper" }, [
+                    _c("div", { staticClass: "tt-background" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "tt-title-small" }, [
+                      _vm._v("مبيعات التخليص الشتوي للشتاء")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "tt-title-large" }, [
+                      _vm._v("خصم حتى"),
+                      _c("span", { staticClass: "tt-base-color" }, [
+                        _vm._v("50%")
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row tt-layout-product-item" }, [
-            _c("div", { staticClass: "col-6 col-md-4 col-lg-3" }, [
-              _c("div", { staticClass: "tt-product thumbprod-center" }, [
-                _c("div", { staticClass: "tt-image-box" }, [
-                  _c("a", {
-                    staticClass: "tt-btn-quickview",
-                    attrs: {
-                      href: "#",
-                      "data-toggle": "modal",
-                      "data-target": "#ModalquickView"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-wishlist",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-compare",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "product.html" } }, [
-                    _c("span", { staticClass: "tt-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-16.jpg",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tt-img-roll-over" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-16-01.jpg",
-                          alt: ""
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-countdown_box" }, [
-                    _c("div", { staticClass: "tt-countdown_inner" }, [
-                      _c("div", {
-                        staticClass: "tt-countdown",
-                        attrs: {
-                          "data-date": "2018-11-14",
-                          "data-year": "Yrs",
-                          "data-month": "Mths",
-                          "data-week": "Wk",
-                          "data-day": "Day",
-                          "data-hour": "Hrs",
-                          "data-minute": "Min",
-                          "data-second": "Sec"
-                        }
-                      })
-                    ])
-                  ])
-                ]),
+          _c("div", { staticClass: "col-sm-6 col-md-4" }, [
+            _c(
+              "a",
+              {
+                staticClass: "tt-promo-box",
+                attrs: { href: "listing-left-column.html" }
+              },
+              [
+                _c("img", {
+                  attrs: {
+                    src: "wokiee_ecommerce/images/promo/index-promo-img-08.jpg",
+                    "data-src":
+                      "wokiee_ecommerce/images/promo/index-promo-img-08.jpg",
+                    alt: ""
+                  }
+                }),
                 _vm._v(" "),
                 _c("div", { staticClass: "tt-description" }, [
-                  _c("div", { staticClass: "tt-row" }, [
-                    _c("ul", { staticClass: "tt-add-info" }, [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("T-SHIRTS")])
+                  _c("div", { staticClass: "tt-description-wrapper" }, [
+                    _c("div", { staticClass: "tt-background" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "tt-title-small" }, [
+                      _vm._v("الصيفية "),
+                      _c("span", { staticClass: "tt-base-color" }, [
+                        _vm._v("2018")
                       ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "tt-title" }, [
-                    _c("a", { attrs: { href: "product.html" } }, [
-                      _vm._v("Flared Shift Dress")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-price" }, [
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t$24\r\n\t\t\t\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-product-inside-hover" }, [
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "tt-btn-addtocart thumbprod-button-bg",
-                          attrs: {
-                            href: "#",
-                            "data-toggle": "modal",
-                            "data-target": "#modalAddToCartProduct"
-                          }
-                        },
-                        [_vm._v("ADD TO CART")]
-                      )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c("a", {
-                        staticClass: "tt-btn-quickview",
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#ModalquickView"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-wishlist",
-                        attrs: { href: "#" }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-compare",
-                        attrs: { href: "#" }
-                      })
+                    _c("div", { staticClass: "tt-title-large" }, [
+                      _vm._v("وصلت حديثا")
                     ])
                   ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6 col-md-4 col-lg-3" }, [
-              _c("div", { staticClass: "tt-product thumbprod-center" }, [
-                _c("div", { staticClass: "tt-image-box" }, [
-                  _c("a", {
-                    staticClass: "tt-btn-quickview",
-                    attrs: {
-                      href: "#",
-                      "data-toggle": "modal",
-                      "data-target": "#ModalquickView"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-wishlist",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-compare",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "product.html" } }, [
-                    _c("span", { staticClass: "tt-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-46.jpg",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tt-img-roll-over" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-46-01.jpg",
-                          alt: ""
-                        }
-                      })
-                    ])
-                  ])
-                ]),
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6 col-md-4" }, [
+            _c(
+              "a",
+              {
+                staticClass: "tt-promo-box",
+                attrs: { href: "listing-left-column.html" }
+              },
+              [
+                _c("img", {
+                  attrs: {
+                    src: "wokiee_ecommerce/images/promo/index-promo-img-09.jpg",
+                    "data-src":
+                      "wokiee_ecommerce/images/promo/index-promo-img-09.jpg",
+                    alt: ""
+                  }
+                }),
                 _vm._v(" "),
                 _c("div", { staticClass: "tt-description" }, [
-                  _c("div", { staticClass: "tt-row" }, [
-                    _c("ul", { staticClass: "tt-add-info" }, [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("T-SHIRTS")])
-                      ])
+                  _c("div", { staticClass: "tt-background" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "tt-description-wrapper" }, [
+                    _c("div", { staticClass: "tt-background" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "tt-title-small" }, [
+                      _vm._v("مجموعة جديدة")
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "tt-rating" }, [
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star-half" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star-empty" })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "tt-title" }, [
-                    _c("a", { attrs: { href: "product.html" } }, [
-                      _vm._v("Flared Shift Dress")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-price" }, [
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t$8\r\n\t\t\t\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-option-block" }, [
-                    _c("ul", { staticClass: "tt-options-swatch" }, [
-                      _c("li", { staticClass: "active" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "options-color",
-                            attrs: { href: "#" }
-                          },
-                          [
-                            _c("span", { staticClass: "swatch-img" }, [
-                              _c("img", {
-                                attrs: {
-                                  src:
-                                    "wokiee_ecommerce/images/custom/texture-img-06.jpg",
-                                  alt: ""
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("span", {
-                              staticClass: "swatch-label color-black"
-                            })
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "options-color",
-                            attrs: { href: "#" }
-                          },
-                          [
-                            _c("span", { staticClass: "swatch-img" }, [
-                              _c("img", {
-                                attrs: {
-                                  src:
-                                    "wokiee_ecommerce/images/custom/texture-img-07.jpg",
-                                  alt: ""
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("span", {
-                              staticClass: "swatch-label color-black"
-                            })
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "options-color",
-                            attrs: { href: "#" }
-                          },
-                          [
-                            _c("span", { staticClass: "swatch-img" }, [
-                              _c("img", {
-                                attrs: {
-                                  src:
-                                    "wokiee_ecommerce/images/custom/texture-img-08.jpg",
-                                  alt: ""
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("span", {
-                              staticClass: "swatch-label color-black"
-                            })
-                          ]
-                        )
+                    _c("div", { staticClass: "tt-title-large" }, [
+                      _c("span", { staticClass: "tt-base-color" }, [
+                        _vm._v("حقائب اليد")
                       ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-product-inside-hover" }, [
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "tt-btn-addtocart thumbprod-button-bg",
-                          attrs: {
-                            href: "#",
-                            "data-toggle": "modal",
-                            "data-target": "#modalAddToCartProduct"
-                          }
-                        },
-                        [_vm._v("ADD TO CART")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c("a", {
-                        staticClass: "tt-btn-quickview",
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#ModalquickView"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-wishlist",
-                        attrs: { href: "#" }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-compare",
-                        attrs: { href: "#" }
-                      })
                     ])
                   ])
                 ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6 col-md-4 col-lg-3" }, [
-              _c("div", { staticClass: "tt-product thumbprod-center" }, [
-                _c("div", { staticClass: "tt-image-box" }, [
-                  _c("a", {
-                    staticClass: "tt-btn-quickview",
-                    attrs: {
-                      href: "#",
-                      "data-toggle": "modal",
-                      "data-target": "#ModalquickView"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-wishlist",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-compare",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "product.html" } }, [
-                    _c("span", { staticClass: "tt-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-18.jpg",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tt-img-roll-over" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-18-01.jpg",
-                          alt: ""
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "tt-description" }, [
-                  _c("div", { staticClass: "tt-row" }, [
-                    _c("ul", { staticClass: "tt-add-info" }, [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("T-SHIRTS")])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "tt-title" }, [
-                    _c("a", { attrs: { href: "product.html" } }, [
-                      _vm._v("Flared Shift Dress")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-price" }, [
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t$46\r\n\t\t\t\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-option-block" }, [
-                    _c("ul", { staticClass: "tt-options-swatch" }, [
-                      _c("li", [
-                        _c("a", {
-                          staticClass: "options-color tt-color-bg-01",
-                          attrs: { href: "#" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c("a", {
-                          staticClass: "options-color tt-color-bg-02",
-                          attrs: { href: "#" }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-product-inside-hover" }, [
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "tt-btn-addtocart thumbprod-button-bg",
-                          attrs: {
-                            href: "#",
-                            "data-toggle": "modal",
-                            "data-target": "#modalAddToCartProduct"
-                          }
-                        },
-                        [_vm._v("ADD TO CART")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c("a", {
-                        staticClass: "tt-btn-quickview",
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#ModalquickView"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-wishlist",
-                        attrs: { href: "#" }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-compare",
-                        attrs: { href: "#" }
-                      })
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6 col-md-4 col-lg-3" }, [
-              _c("div", { staticClass: "tt-product thumbprod-center" }, [
-                _c("div", { staticClass: "tt-image-box" }, [
-                  _c("a", {
-                    staticClass: "tt-btn-quickview",
-                    attrs: {
-                      href: "#",
-                      "data-toggle": "modal",
-                      "data-target": "#ModalquickView"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-wishlist",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-compare",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "product.html" } }, [
-                    _c("span", { staticClass: "tt-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-19.jpg",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tt-img-roll-over" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-19-02.jpg",
-                          alt: ""
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "tt-description" }, [
-                  _c("div", { staticClass: "tt-row" }, [
-                    _c("ul", { staticClass: "tt-add-info" }, [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("T-SHIRTS")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-rating" }, [
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "tt-title" }, [
-                    _c("a", { attrs: { href: "product.html" } }, [
-                      _vm._v("Flared Shift Dress")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-price" }, [
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t$35\r\n\t\t\t\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-product-inside-hover" }, [
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "tt-btn-addtocart thumbprod-button-bg",
-                          attrs: {
-                            href: "#",
-                            "data-toggle": "modal",
-                            "data-target": "#modalAddToCartProduct"
-                          }
-                        },
-                        [_vm._v("ADD TO CART")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c("a", {
-                        staticClass: "tt-btn-quickview",
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#ModalquickView"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-wishlist",
-                        attrs: { href: "#" }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-compare",
-                        attrs: { href: "#" }
-                      })
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6 col-md-4 col-lg-3" }, [
-              _c("div", { staticClass: "tt-product thumbprod-center" }, [
-                _c("div", { staticClass: "tt-image-box" }, [
-                  _c("a", {
-                    staticClass: "tt-btn-quickview",
-                    attrs: {
-                      href: "#",
-                      "data-toggle": "modal",
-                      "data-target": "#ModalquickView"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-wishlist",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-compare",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "product.html" } }, [
-                    _c("span", { staticClass: "tt-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-41.jpg",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tt-img-roll-over" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-41-01.jpg",
-                          alt: ""
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "tt-description" }, [
-                  _c("div", { staticClass: "tt-row" }, [
-                    _c("ul", { staticClass: "tt-add-info" }, [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("T-SHIRTS")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-rating" }, [
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "tt-title" }, [
-                    _c("a", { attrs: { href: "product.html" } }, [
-                      _vm._v("Flared Shift Dress")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-price" }, [
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t$124\r\n\t\t\t\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-product-inside-hover" }, [
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "tt-btn-addtocart thumbprod-button-bg",
-                          attrs: {
-                            href: "#",
-                            "data-toggle": "modal",
-                            "data-target": "#modalAddToCartProduct"
-                          }
-                        },
-                        [_vm._v("ADD TO CART")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c("a", {
-                        staticClass: "tt-btn-quickview",
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#ModalquickView"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-wishlist",
-                        attrs: { href: "#" }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-compare",
-                        attrs: { href: "#" }
-                      })
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6 col-md-4 col-lg-3" }, [
-              _c("div", { staticClass: "tt-product thumbprod-center" }, [
-                _c("div", { staticClass: "tt-image-box" }, [
-                  _c("a", {
-                    staticClass: "tt-btn-quickview",
-                    attrs: {
-                      href: "#",
-                      "data-toggle": "modal",
-                      "data-target": "#ModalquickView"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-wishlist",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-compare",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "product.html" } }, [
-                    _c("span", { staticClass: "tt-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-02.jpg",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tt-img-roll-over" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-02-03.jpg",
-                          alt: ""
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "tt-description" }, [
-                  _c("div", { staticClass: "tt-row" }, [
-                    _c("ul", { staticClass: "tt-add-info" }, [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("T-SHIRTS")])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "tt-title" }, [
-                    _c("a", { attrs: { href: "product.html" } }, [
-                      _vm._v("Flared Shift Dress")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-price" }, [
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t$43\r\n\t\t\t\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-product-inside-hover" }, [
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "tt-btn-addtocart thumbprod-button-bg",
-                          attrs: {
-                            href: "#",
-                            "data-toggle": "modal",
-                            "data-target": "#modalAddToCartProduct"
-                          }
-                        },
-                        [_vm._v("ADD TO CART")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c("a", {
-                        staticClass: "tt-btn-quickview",
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#ModalquickView"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-wishlist",
-                        attrs: { href: "#" }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-compare",
-                        attrs: { href: "#" }
-                      })
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6 col-md-4 col-lg-3" }, [
-              _c("div", { staticClass: "tt-product thumbprod-center" }, [
-                _c("div", { staticClass: "tt-image-box" }, [
-                  _c("a", {
-                    staticClass: "tt-btn-quickview",
-                    attrs: {
-                      href: "#",
-                      "data-toggle": "modal",
-                      "data-target": "#ModalquickView"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-wishlist",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-compare",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "product.html" } }, [
-                    _c("span", { staticClass: "tt-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-05.jpg",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tt-img-roll-over" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-05-02.jpg",
-                          alt: ""
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "tt-description" }, [
-                  _c("div", { staticClass: "tt-row" }, [
-                    _c("ul", { staticClass: "tt-add-info" }, [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("T-SHIRTS")])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "tt-title" }, [
-                    _c("a", { attrs: { href: "product.html" } }, [
-                      _vm._v("Flared Shift Dress")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-price" }, [
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t$124\r\n\t\t\t\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-product-inside-hover" }, [
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "tt-btn-addtocart thumbprod-button-bg",
-                          attrs: {
-                            href: "#",
-                            "data-toggle": "modal",
-                            "data-target": "#modalAddToCartProduct"
-                          }
-                        },
-                        [_vm._v("ADD TO CART")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c("a", {
-                        staticClass: "tt-btn-quickview",
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#ModalquickView"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-wishlist",
-                        attrs: { href: "#" }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-compare",
-                        attrs: { href: "#" }
-                      })
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6 col-md-4 col-lg-3" }, [
-              _c("div", { staticClass: "tt-product thumbprod-center" }, [
-                _c("div", { staticClass: "tt-image-box" }, [
-                  _c("a", {
-                    staticClass: "tt-btn-quickview",
-                    attrs: {
-                      href: "#",
-                      "data-toggle": "modal",
-                      "data-target": "#ModalquickView"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-wishlist",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", {
-                    staticClass: "tt-btn-compare",
-                    attrs: { href: "#" }
-                  }),
-                  _vm._v(" "),
-                  _c("a", { attrs: { href: "product.html" } }, [
-                    _c("span", { staticClass: "tt-img" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-33.jpg",
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tt-img-roll-over" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "wokiee_ecommerce/images/loader.svg",
-                          "data-src":
-                            "wokiee_ecommerce/images/product/product-33-01.jpg",
-                          alt: ""
-                        }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "tt-description" }, [
-                  _c("div", { staticClass: "tt-row" }, [
-                    _c("ul", { staticClass: "tt-add-info" }, [
-                      _c("li", [
-                        _c("a", { attrs: { href: "#" } }, [_vm._v("T-SHIRTS")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-rating" }, [
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star-half" }),
-                      _vm._v(" "),
-                      _c("i", { staticClass: "icon-star-empty" })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "tt-title" }, [
-                    _c("a", { attrs: { href: "product.html" } }, [
-                      _vm._v("Flared Shift Dress")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-price" }, [
-                    _vm._v("\r\n\t\t\t\t\t\t\t\t$54\r\n\t\t\t\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "tt-product-inside-hover" }, [
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "tt-btn-addtocart thumbprod-button-bg",
-                          attrs: {
-                            href: "#",
-                            "data-toggle": "modal",
-                            "data-target": "#modalAddToCartProduct"
-                          }
-                        },
-                        [_vm._v("ADD TO CART")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "tt-row-btn" }, [
-                      _c("a", {
-                        staticClass: "tt-btn-quickview",
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#ModalquickView"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-wishlist",
-                        attrs: { href: "#" }
-                      }),
-                      _vm._v(" "),
-                      _c("a", {
-                        staticClass: "tt-btn-compare",
-                        attrs: { href: "#" }
-                      })
-                    ])
-                  ])
-                ])
-              ])
-            ])
+              ]
+            )
           ])
-        ]
-      )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tt-block-title" }, [
+      _c("h1", { staticClass: "tt-title" }, [_vm._v("الأكثر مبيعا")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tt-description" }, [
+        _vm._v("الأكثر مبيعا هدا الاسبوع")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "tt-label-location" }, [
+      _c("span", { staticClass: "tt-label-new" }, [_vm._v("New")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tt-rating" }, [
+      _c("i", { staticClass: "icon-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "icon-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "icon-star" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "icon-star-half" }),
+      _vm._v(" "),
+      _c("i", { staticClass: "icon-star-empty" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tt-product-inside-hover" }, [
+      _c("div", { staticClass: "tt-row-btn" }, [
+        _c(
+          "a",
+          {
+            staticClass: "tt-btn-addtocart thumbprod-button-bg",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": "#modalAddToCartProduct"
+            }
+          },
+          [_vm._v("ADD TO CART")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tt-row-btn" }, [
+        _c("a", {
+          staticClass: "tt-btn-quickview",
+          attrs: {
+            href: "#",
+            "data-toggle": "modal",
+            "data-target": "#ModalquickView"
+          }
+        }),
+        _vm._v(" "),
+        _c("a", { staticClass: "tt-btn-wishlist", attrs: { href: "#" } }),
+        _vm._v(" "),
+        _c("a", { staticClass: "tt-btn-compare", attrs: { href: "#" } })
+      ])
     ])
   }
 ]
