@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //set the language by default
-        Session::put('lang','En');
+        Session::put('lang','Ara');
 
         Schema::defaultStringLength(191);
         $baseUrl = env('kNAWAT_BASE_URL');
@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
 
         // the session is arabic directive
         Blade::if('sar', function () {
-            if(Session::get('lang') == 'Ar'){
+            if(Session::get('lang') == 'Ara'){
                 return true;
             }
             return false;

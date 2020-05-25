@@ -19,10 +19,8 @@ Vue.use(LoadScript);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('lang', require('./components/Lang.vue'));
-Vue.component('home', require('./components/home/Home.vue'));
 
-Vue.component('catalogue', require('./components/home/Catalogue.vue'));
+/* Vue.component('catalogue', require('./components/home/Catalogue.vue'));
 Vue.component('bigcatalogue', require('./components/BigCatalogue'));
 Vue.component('products', require('./components/Products.vue'));
 Vue.component('categories', require('./components/Categories.vue'));
@@ -39,7 +37,7 @@ Vue.component('bestsellers',require('./components/BestSellers.vue'));
 Vue.component('popularcategories',require('./components/PopularCategories.vue'));
 Vue.component('productdetails',require('./components/ProductDetails.vue'));
 Vue.component('relatedproducts',require('./components/RelatedProducts.vue'));
-//login and register modals 
+//login and register modals
 Vue.component('loginmodal', require('./components/Login.vue'));
 Vue.component('loginarmodal', require('./components/Ar/Login.vue'));
 Vue.component('registermodal', require('./components/Register.vue'));
@@ -64,16 +62,21 @@ Vue.component('settingsar',require('./components/user/dashboard/Ar/Settings.vue'
 //here is the arabic version for part of pages like home products and so on
 Vue.component('homear', require('./components/Ar/home/Home.vue'));
 Vue.component('cataloguear', require('./components/Ar/home/Catalogue.vue'));
-//the admin part 
+//the admin part
 Vue.component('productstable',require('./components/admin/ProductsTable.vue'));
 Vue.component('tickets',require('./components/admin/Tickets.vue'));
-Vue.component('orders',require('./components/admin/Orders.vue'));
+Vue.component('orders',require('./components/admin/Orders.vue')); */
+
+Vue.component('lang', require('./components/Lang.vue'));
+Vue.component('global-index', require('./components/Ara/GlobalIndex.vue'));
+
+import router from './routes/routes'
 
 const store = new Vuex.Store({
     state:{
       categories :[],
       activeCategory:'',
-      products :[],
+      products :{},
       currentProducts :[],
       currencies :{},
       currenciesSigns :{
@@ -90,12 +93,25 @@ const store = new Vuex.Store({
       favoritedProducts : [],
       cartItems:[],
       lang:null,
+    },
+    getters:{
+       products(state){
+            return state.products
+       }
+    },
+    mutations:{
+      setProducts(state,products){
+        state.products = products;
+        localStorage.setItem('products',JSON.stringify(products))
+      },
+
     }
 })
 
 const app = new Vue({
     el: '#app',
-    store : store
+    store : store,
+    router,
 });
 
 const adminapp = new Vue({

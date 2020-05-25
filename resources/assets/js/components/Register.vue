@@ -11,22 +11,22 @@
               </button>
           </div>
           <div class="modal-body p-3">
-            
-                
+
+
                    <!-- page wapper-->
     <div class="columns-container p-1 bg-white">
             <div class="" id="columns">
-               
+
                 <div class="page-content">
                     <ul class="list-group " v-if="this.errors.length > 0">
                     <li class="list-group-item  text-danger" v-for="error in errors"
                     :key="error.indexOf(error)"
                     >
-                     {{error}}    
-                    </li>  
+                     {{error}}
+                    </li>
                     </ul>
                     <div class="row m-0">
-                        
+
                         <div v-if="registred" class="border w-100 p-3 text-center" style="box-shadow: rgb(193, 179, 179) 0px 0px 8px 0px;">
                            <div class="alert alert-success">success,we sent you a verification code, please check your email</div>
                            <a  href="/verifyEmailpage" class="btn btn-primary m-auto">verify my email</a>
@@ -35,79 +35,79 @@
                             <div class="box-authentication">
                                 <h5>Create an account</h5>
 
-                                <form class="form-horizontal" method="POST" 
+                                <form class="form-horizontal" method="POST"
                                 id="regform" novalidate>
-                                      
-                
+
+
                                         <div class="form-group">
                                             <label for="firstname" class="  control-label" >firstname</label>
-                
-                                            <div class=""> 
+
+                                            <div class="">
                                                 <input id="firstname" type="text" class="form-control w-100" name="firstname" v-model="firstname" autofocus >
                                             </div>
                                             <div v-show="firstname.length < 3 && firstname.length > 0" class="text-danger font-weight-bold mt-1">
-                                                   The firstname is too short ... 
+                                                   The firstname is too short ...
                                             </div>
                                         </div>
                                         <div class="form-group">
                                                 <label for="lastname" class=" control-label">lastname</label>
-                    
-                                                <div class=""> 
-                                                    <input id="lastname" type="text" class="form-control w-100" name="lastname" v-model="lastname"  > 
+
+                                                <div class="">
+                                                    <input id="lastname" type="text" class="form-control w-100" name="lastname" v-model="lastname"  >
                                                 </div>
                                                 <div v-show="lastname.length < 3 && lastname.length > 0" class="text-danger font-weight-bold mt-1">
-                                                   The lastname is too short ... 
+                                                   The lastname is too short ...
                                                  </div>
                                         </div>
                                         <div class="form-group">
                                                 <label for="address" class=" control-label">address</label>
-                    
-                                                <div class=""> 
+
+                                                <div class="">
                                                     <input id="address" type="text" class="form-control w-100" name="address" v-model="address" >
                                                 </div>
                                                  <div v-show="address.length < 3 && address.length > 0" class="text-danger font-weight-bold mt-1">
-                                                   The address is too short ... 
+                                                   The address is too short ...
                                                  </div>
                                         </div>
                                         <div class="form-group">
                                                 <label for="phone" class=" control-label">phone</label>
-                    
-                                                <div class=""> 
+
+                                                <div class="">
                                                     <input id="phone" type="number" class="form-control w-100" name="phone" v-model="phone" >
                                                 </div>
                                                 <div v-show="phone.length < 9 && phone.length > 0" class="text-danger font-weight-bold mt-1">
-                                                   The phone is too short ... 
+                                                   The phone is too short ...
                                                 </div>
                                                 <div v-show="phone.length > 13" class="text-danger font-weight-bold mt-1">
-                                                   The phone is too long ... 
+                                                   The phone is too long ...
                                                 </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="email" class=" control-label">E-Mail Address</label>
-                
+
                                             <div class="">
                                                 <input id="email" type="email" class="form-control w-100" name="email" v-model="email"  >
                                             </div>
-                                            
+
                                             <div v-if="emailError.length > 0" class="text-danger font-weight-bold mt-1">
-                                                {{emailError}}  
+                                                {{emailError}}
                                             </div>
                                         </div>
-                
+
                                         <div class="form-group">
                                             <label for="password" class=" control-label">password</label>
-                
+
                                             <div class="">
                                                 <input id="password" type="password" class="form-control w-100" name="password" v-model="password" >
                                             </div>
                                             <div v-show="password.length < 6 && password.length > 0" class="text-danger font-weight-bold mt-1">
-                                                   The pssword length must be more than 6... 
+                                                   The pssword length must be more than 6...
                                             </div>
                                         </div>
-                
+
                                         <div class="form-group">
                                             <label for="password-confirm" class=" control-label ">Confirm Password</label>
-                
+
                                             <div class="">
                                                 <input id="password-confirm" type="password" class="form-control w-100" name="password_confirmation" v-model="passwordconfirm">
                                             </div>
@@ -115,10 +115,10 @@
                                                    The password confirm doesn't match ...
                                             </div>
                                             <div v-if="passwordError.length > 0" class="text-danger font-weight-bold mt-1">
-                                                {{emailError}}  
+                                                {{emailError}}
                                             </div>
                                         </div>
-                
+
                                         <div class="form-group">
                                             <div class=" col-md-offset-4">
                                                 <button type="submit" class="btn main-b-bg text-light"
@@ -130,12 +130,12 @@
                                     </form>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
     </div>
-            
+
           </div>
           </div>
       </div>
@@ -170,7 +170,7 @@ export default {
         isPhoneValide(){
             return (this.phone.length < 14) && (this.phone.length >= 9);
         },
-        isEmailValide() 
+        isEmailValide()
         {
             if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email))
             {
@@ -199,13 +199,13 @@ export default {
                             else
                             {this.errors.push(error) }
                         }
-                        
+
                     })
                 }else{
-                  
-                  this.registred = true;  
+
+                  this.registred = true;
                 }
-               
+
                 //window.location.reload();
             })
             .catch(errors => {
@@ -218,7 +218,7 @@ export default {
                 }
             })
         }
-    
+
     }
 }
 </script>
