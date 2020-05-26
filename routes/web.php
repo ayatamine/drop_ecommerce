@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +28,8 @@ Route::group(['as'=>'frontEnd.','middleware'=>'web'],function(){
     /* Route::get('/home', 'frontEndController@index')->name('home');
     Route::get('/men', 'frontEndController@men')->name('men');
     Route::get('/products', 'frontEndController@products')->name('products'); */
+    //using vue router
+   /*  Route::get('{any}','frontEndController@index')->where('any','.*'); */
 
     Route::get('/getCategories', 'HomeController@getCategories');
     Route::get('/get10Products', 'HomeController@get10Products');
@@ -39,6 +43,9 @@ Route::group(['as'=>'frontEnd.','middleware'=>'web'],function(){
     Route::get('/lang/{lang}','HomeController@setLang')->name('setLang');
     //register new user
     Route::post('/users/store','UserController@store')->name('users.store');
+    Route::get('/users/auth',function(){
+          return Auth::user();
+    });
     //get the favorite page
     Route::get('/favorites','UserController@favorites_page')->name('user.favorites');
     //get the cart page

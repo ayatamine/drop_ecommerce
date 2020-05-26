@@ -53,7 +53,7 @@ export default {
       /// add to favorite fonctionality
        addPToFavorite(sku,event){
           if(this.authId.length > 0){
-          event.target.parentNode.classList.add('favorited')
+         // event.target.parentNode.classList.add('favorited')
           axios.post('/user/favorites/add',{user_id:this.authId,sku:sku})
           .then(res => {
             //console.log(res)
@@ -164,5 +164,12 @@ export default {
 
       },
       computed:{
+         cartItems(){
+           return this.$store.state.cartItems;
+         },
+         authId(){
+             return this.$store.state.user.id;
+         }
+
       }
   };

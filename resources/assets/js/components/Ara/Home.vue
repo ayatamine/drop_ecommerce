@@ -2,62 +2,71 @@
 <div>
    <div id="tt-pageContent">
 
-    <div class="container-indent0" v-if="categories">
+    <div class="container-indent0" v-if="categories.length">
 		<div class="container-fluid">
 			<div class="row tt-layout-promo-box">
 				<div class="col-sm-12 col-md-6">
 					<div class="row">
 						<div class="col-sm-6">
-							<a href="listing-left-column.html" v-for="i in 2" :key="i" class="tt-promo-box tt-one-child hover-type-2">
-								<img src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg"  class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-01.jpg'"
+								<router-link to="/products" v-for="i in 2" :key="i" class="tt-promo-box tt-one-child hover-type-2">
+								<img src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg"
+								@click="setCurrentCategory(categories[i])"
+								 class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-01.jpg'"
 								data-src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg" alt="">
-								<div class="tt-description">
+								<div class="tt-description" @click="setCurrentCategory(categories[i])">
 									<div class="tt-description-wrapper">
 										<div class="tt-background"></div>
 										<div class="tt-title-small">{{categories[i].name.ar}}</div>
 									</div>
 								</div>
-							</a>
+								</router-link>
 						</div>
 						<div class="col-sm-6">
-							<a href="listing-left-column.html"  class="tt-promo-box tt-one-child hover-type-2">
-								<img src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg" class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'"
+							<router-link to="/products"  class="tt-promo-box tt-one-child hover-type-2" v-if="!!categories[3]">
+								<img src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg"
+								@click="setCurrentCategory(categories[3])"
+								class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'"
 								 data-src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg" alt="">
 								<div class="tt-description">
-									<div class="tt-description-wrapper">
+									<div class="tt-description-wrapper" @click="setCurrentCategory(categories[3])">
 										<div class="tt-background"></div>
-										<div class="tt-title-small">{{ categories[3] ? categories[3].name.en : '' }}</div>
+										<div class="tt-title-small">{{ categories[3] ? categories[3].name.ar : '' }}</div>
 									</div>
 								</div>
-							</a>
+							</router-link>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-12 col-md-6">
-					<div class="row">
-						<div class="col-sm-6" v-for="i in (0,2)" :key="i">
-							<a href="listing-left-column.html" class="tt-promo-box tt-one-child hover-type-2">
-								<img src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg" class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-04.jpg'"
+					<div class="row" v-if="categories.slice(3).length">
+						<div class="col-sm-6" v-for="i in (0,2)" :key="i" >
+							<router-link to="/products"  class="tt-promo-box tt-one-child hover-type-2">
+								<img src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg"
+								@click="setCurrentCategory(categories.slice(3)[i])"
+								class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-04.jpg'"
 								data-src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg" alt="">
 								<div class="tt-description">
-									<div class="tt-description-wrapper">
+									<div class="tt-description-wrapper" @click="setCurrentCategory(categories.slice(3)[i])">
 										<div class="tt-background"></div>
 										<div class="tt-title-small">{{ categories.slice(3)[i].name.ar }}</div>
 									</div>
 								</div>
-							</a>
+							</router-link>
 						</div>
-						<div class="col-sm-12">
-							<a href="listing-left-column.html" class="tt-promo-box tt-one-child">
-								<img src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg" class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-06.jpg'"
+						<div class="col-sm-12" v-if="!!categories.slice(6)[0]">
+							<router-link to="/products"  class="tt-promo-box tt-one-child">
+								<img src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg"
+								@click="setCurrentCategory(categories.slice(6)[0])"
+								 class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-06.jpg'"
 								 data-src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg" alt="">
 								<div class="tt-description">
-									<div class="tt-description-wrapper">
+									<div class="tt-description-wrapper"
+									@click="setCurrentCategory(categories.slice(6)[0])">
 										<div class="tt-background"></div>
-										<div class="tt-title-small">{{ categories.slice(6)[0] ? categories.slice(6)[0].name.ar : '' }}</div>
+										<div class="tt-title-small">{{!!categories.slice(6)[0].name.ar ?  categories.slice(6)[0].name.ar : categories.slice(6)[0].name[0]  }}</div>
 									</div>
 								</div>
-							</a>
+							</router-link>
 						</div>
 					</div>
 				</div>
@@ -109,7 +118,8 @@
 							<div class="tt-product-inside-hover">
 								<div class="tt-row-btn">
 									<a href="#"
-									 class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
+									 class="tt-btn-addtocart thumbprod-button-bg"  @click="addToCart(p,$event)"
+									  data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
 								</div>
 								<div class="tt-row-btn" >
 									<a href="#" class="tt-btn-quickview"
@@ -215,7 +225,8 @@
 							<h2 class="tt-title"><a href="product.html">{{p.name.ar}}</a></h2>
 							<div class="tt-product-inside-hover">
 								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
+									<a href="#" class="tt-btn-addtocart thumbprod-button-bg"  @click="addToCart(p,$event)"
+									 data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
 								</div>
 								<div class="tt-row-btn">
 									<a href="#" class="tt-btn-quickview" @click="setProductInViewer(p,$event)"
@@ -254,11 +265,11 @@ export default {
    mixins:[mixins],
   created(){
 
-	  this.setCategories();
   },
   mounted(){
 	  this.loading = true;
 	  this.getFirstProducts();
+	  this.getUser();
   },
   methods:{
       getFirstProducts(){
@@ -266,6 +277,7 @@ export default {
            if(!!sessionproducts){
 			  this.$store.commit('setFeateredProducts',JSON.parse(sessionproducts))
 			  this.loading = false;
+			  this.setCategories();
               //this.products = JSON.parse(sessionproducts)
               //this.$store.state.currentProducts = JSON.parse(sessionproducts).splice(1,10)
            }else{
@@ -276,14 +288,15 @@ export default {
 
      },
       fetchfirstProducts(){
-          this.loading = true;
+		  this.loading = true;
+		  var self = this
           axios.get('/get10Products')
           .then(res => {
             console.log(res)
 
 
             setTimeout(() => {
-              this.loading = false;
+              self.loading = false;
             }, 3000);
             if(!res.data.products){
                  this.fetchfirstProducts();
@@ -292,11 +305,14 @@ export default {
 
 			}
 			this.loading = false;
+
+			self.setCategories();
           })
           .catch(error => {
                     this.loading = false
                     //do whatever with response
-                })
+				})
+
 	  },
 	  setCategories(){
 		 this.$store.dispatch('setCategories');
@@ -319,7 +335,19 @@ export default {
 	 setProductInViewer(product,event){
 		 console.log('cliken',product)
          this.$store.commit('setProductInViewer',product);
-	 }
+	 },
+	 setCurrentCategory(categoryName){
+        this.$store.commit('setCurrentCategory',categoryName)
+     }
+	 ,
+	 getUser(){
+		 axios.get('/users/auth')
+		 .then(res => {
+			 this.$store.state.user =res.data
+		 })
+	 },
+
+
   },
   computed:{
       featuredProducts(){
@@ -327,11 +355,12 @@ export default {
 	  },
       categories(){
           return this.$store.getters.categories
-	  }
+	  },
+
   }
 }
 $(document).on('mouseenter','.tt-product.thumbprod-center',function(){
-	console.log('yes')
+	//console.log('yes')
   $('.tt-product.thumbprod-center').removeClass('hovered')
   $(this).addClass('hovered')
 })

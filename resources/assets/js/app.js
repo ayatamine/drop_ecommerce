@@ -79,6 +79,15 @@ const store = new Vuex.Store({
       products :{},
       featuredProducts :[],
       productInViewer:null,
+      user:null,
+      currentCategory : {
+        name : {
+        ar: "كل المنتجات",
+        en: "All",
+        tr: "كل المنتجات"
+        },
+        productsCount: 0,
+      },
       currentProducts :[],
       currencies :{},
       currenciesSigns :{
@@ -91,7 +100,7 @@ const store = new Vuex.Store({
       currencyRate :1,//0.174,
       currencySign:'$',
       productDetails:{},
-      authId:null,
+
       favoritedProducts : [],
       cartItems:[],
       lang:null,
@@ -115,6 +124,7 @@ const store = new Vuex.Store({
       setProducts(state,products){
         state.products = products;
         localStorage.setItem('products',JSON.stringify(products))
+        state.currentCategory.productsCount = products.length
       },
       setFeateredProducts(state,products){
         state.featuredProducts = products;
@@ -124,30 +134,41 @@ const store = new Vuex.Store({
            state.categories = payload;
       },
       setProductInViewer(state,product){
-         console.log(product)
+          //console.log(product)
           state.productInViewer = product
+      },
+      setCurrentCategory(state,category){
+             state.currentCategory = category;
       }
 
     },
     actions:{
-      setCategories({commit}){
+      setCategories({commit,state}){
         let sessionCategories =localStorage.getItem('categories')
         if(!sessionCategories){
-          axios.get('/getCategories')
-          .then(res => {
-              //console.log(res)
-              localStorage.setItem('categories',JSON.stringify(res.data.categories))
-              commit('setCategories',res.data.categories)
-          })
-          .catch(error => {
-                    this.loading = false
-                    console.log(error)
-                    //do whatever with response
-                })
+            let cat = new Set();
+            let allproducts = state.products.length > 0 ? state.product : state.featuredProducts;
+            allproducts.forEach(product=>{
+              product.categories.forEach(element => {
+
+                cat.add(element);
+              });
+            })
+            //remove duplicated categories
+            const uniqueCategories = Array.from(cat)
+            .map(e => e['id'])
+
+            // store the keys of the unique objects
+            .map((e, i, final) => final.indexOf(e) === i && i)
+
+            // eliminate the dead keys & store unique objects
+            .filter(e => Array.from(cat)[e]).map(e => Array.from(cat)[e]);
+            //console.log('uniquecat',uniqueCategories)
+            commit('setCategories',uniqueCategories);
         }else{
               commit('setCategories',JSON.parse(sessionCategories));
         }
-        }
+      },
 
     }
 })

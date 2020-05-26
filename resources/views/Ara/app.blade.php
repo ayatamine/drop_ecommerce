@@ -611,6 +611,7 @@
 <script src="{{ asset('wokiee_ecommerce/external/countdown/jquery.countdown.min.js')}}"></script> --}}
 <script src="{{ asset('wokiee_ecommerce/external/lazyLoad/lazyload.min.js')}}"></script>
 <script src="{{ asset('wokiee_ecommerce/js/main.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/sweetalert.min.js')}}"></script>
 <!-- form validation and sending to mail -->
 {{-- <script src="{{ asset('wokiee_ecommerce/external/form/jquery.form.js')}}"></script>
 <script src="{{ asset('wokiee_ecommerce/external/form/jquery.validate.min.js')}}"></script>

@@ -149,12 +149,14 @@
 </template>
 
 <script>
+import currencyMixins from '../../../mixins/currencyMixins';
 export default {
   data(){
       return {
 
 	  }
   },
+  mixins:[currencyMixins],
   methods:{
 	  getQuantity(){
            let sum = 0;
@@ -196,13 +198,7 @@ export default {
 	  product(){
 		  return this.$store.getters.productInViewer
 	  },
-        currencyRate(){
-            return this.$store.state.currencyRate;
-        },
-        currencySign(){
 
-            return this.$store.state.currencySign
-        },
   }
 
 }
