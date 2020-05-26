@@ -77,7 +77,8 @@ const store = new Vuex.Store({
       categories :[],
       activeCategory:'',
       products :{},
-      featuredProducts :{},
+      featuredProducts :[],
+      productInViewer:null,
       currentProducts :[],
       currencies :{},
       currenciesSigns :{
@@ -104,7 +105,11 @@ const store = new Vuex.Store({
        },
        categories(state){
          return state.categories;
+       },
+       productInViewer(state){
+         return state.productInViewer;
        }
+
     },
     mutations:{
       setProducts(state,products){
@@ -117,6 +122,10 @@ const store = new Vuex.Store({
       },
       setCategories(state,payload){
            state.categories = payload;
+      },
+      setProductInViewer(state,product){
+         console.log(product)
+          state.productInViewer = product
       }
 
     },

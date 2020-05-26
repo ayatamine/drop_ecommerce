@@ -74,7 +74,9 @@
 				<div class="col-6 col-md-4 col-lg-3" v-for="(p,index) in featuredProducts.slice(0,8)" :key="index">
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
+							<a href="#" class="tt-btn-quickview"
+							@click="setProductInViewer(p,$event)"
+							 data-toggle="modal" data-target="#ModalquickView"></a>
 							<a href="#" class="tt-btn-wishlist"></a>
 							<a href="#" class="tt-btn-compare"></a>
 							<a href="product.html">
@@ -106,107 +108,22 @@
 							<h2 class="tt-title"><a href="product.html">{{p.name.ar}}</a></h2>
 							<div class="tt-product-inside-hover">
 								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
+									<a href="#"
+									 class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
 								</div>
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
+								<div class="tt-row-btn" >
+									<a href="#" class="tt-btn-quickview"
+									@click="setProductInViewer(p,$event)"
+									data-toggle="modal" data-target="#ModalquickView"></a>
+									<a href="#" class="tt-btn-wishlist"
+									@click="addPToFavorite(p,$event)"
+									></a>
 									<a href="#" class="tt-btn-compare"></a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- <div class="col-6 col-md-4 col-lg-3">
-					<div class="tt-product thumbprod-center">
-						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
-							<a href="product.html">
-								<span class="tt-img"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-43.jpg" alt=""></span>
-								<span class="tt-img-roll-over"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-43-03.jpg" alt=""></span>
-								<span class="tt-label-location">
-									<span class="tt-label-our-fatured">Fatured</span>
-								</span>
-							</a>
-						</div>
-						<div class="tt-description">
-							<div class="tt-row">
-								<ul class="tt-add-info">
-									<li><a href="#">T-SHIRTS</a></li>
-								</ul>
-								<div class="tt-rating">
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-									<i class="icon-star"></i>
-								</div>
-							</div>
-							<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
-							<div class="tt-option-block">
-								<ul class="tt-options-swatch">
-									<li class="active"><a class="options-color tt-color-bg-01" href="#"></a></li>
-									<li><a class="options-color tt-color-bg-02" href="#"></a></li>
-								</ul>
-							</div>
-							<div class="tt-product-inside-hover">
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
-								</div>
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
-									<a href="#" class="tt-btn-compare"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-6 col-md-4 col-lg-3">
-					<div class="tt-product thumbprod-center">
-						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
-							<a href="product.html">
-								<span class="tt-img"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-27-01.jpg" alt=""></span>
-								<span class="tt-img-roll-over"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-27.jpg" alt=""></span>
-								<span class="tt-label-location">
-									<span class="tt-label-our-stock">Out Of Stock</span>
-								</span>
-							</a>
-						</div>
-						<div class="tt-description">
-							<div class="tt-row">
-								<ul class="tt-add-info">
-									<li><a href="#">T-SHIRTS</a></li>
-								</ul>
-							</div>
-							<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
-							<div class="tt-price">
-								$12
-							</div>
-							<div class="tt-option-block">
-								<ul class="tt-options-swatch">
-									<li><a class="options-color tt-color-bg-01" href="#"></a></li>
-									<li><a class="options-color tt-color-bg-02" href="#"></a></li>
-								</ul>
-							</div>
-							<div class="tt-product-inside-hover">
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
-								</div>
-								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
-									<a href="#" class="tt-btn-compare"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
 
 			</div>
 		</div>
@@ -264,7 +181,9 @@
 				<div class="col-6 col-md-4 col-lg-3" v-for="(p,index) in featuredProducts.slice(8,14)" :key="index">
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
+							<a href="#" class="tt-btn-quickview"
+							@click="setProductInViewer(p,$event)"
+							 data-toggle="modal" data-target="#ModalquickView"></a>
 							<a href="#" class="tt-btn-wishlist"></a>
 							<a href="#" class="tt-btn-compare"></a>
 							<a href="product.html">
@@ -299,7 +218,8 @@
 									<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
 								</div>
 								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
+									<a href="#" class="tt-btn-quickview" @click="setProductInViewer(p,$event)"
+									data-toggle="modal" data-target="#ModalquickView"></a>
 									<a href="#" class="tt-btn-wishlist"></a>
 									<a href="#" class="tt-btn-compare"></a>
 								</div>
@@ -320,7 +240,7 @@
 </template>
 <script>
 import modalViewProduct from './modals/ModalViewProduct.vue'
-
+import mixins from '../../mixins/new_mixins.js';
 export default {
   data(){
       return {
@@ -331,6 +251,7 @@ export default {
   components:{
 	  modalViewProduct
   },
+   mixins:[mixins],
   created(){
 
 	  this.setCategories();
@@ -394,7 +315,11 @@ export default {
           //get the image of first product
           let firstp = fil[Math.floor(Math.random() * (fil.length - 1))];
           return firstp.images[0];
-     }
+	 },
+	 setProductInViewer(product,event){
+		 console.log('cliken',product)
+         this.$store.commit('setProductInViewer',product);
+	 }
   },
   computed:{
       featuredProducts(){
@@ -402,7 +327,7 @@ export default {
 	  },
       categories(){
           return this.$store.getters.categories
-	  },
+	  }
   }
 }
 $(document).on('mouseenter','.tt-product.thumbprod-center',function(){
