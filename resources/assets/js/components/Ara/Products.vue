@@ -14,7 +14,7 @@
 			<div class="row "><!-- flex-sm-row-reverse -->
 				<div class="col-md-4 col-lg-3 col-xl-3 leftColumn rightColumn aside">
 					<div class="tt-btn-col-close">
-						<a href="#">Close</a>
+						<a href="#">إغلاق</a>
 					</div>
 					<div class="tt-collapse open tt-filter-detach-option">
 						<div class="tt-collapse-content">
@@ -154,11 +154,11 @@
 							</h1>
 							<h1 class="tt-title" v-else>الكل	</h1>
 							<div class="tt-btn-toggle">
-								<a href="#">قلترة</a>
+								<a style="cursor:pointer" id="showMobNav">فلترة</a>
 							</div>
 							<div class="tt-sort">
-								 <select name="SortBy" v-model="SortProperty"  id="SortBy" style="padding: 4px;">
-                                    <option value="all" > بلا ترتيب</option>
+								 <select name="SortBy" v-model="SortProperty"  id="SortBy" style="padding: 4px;    border: 1px solid #e6e6e6;">
+                                    <option value="all" selected="selected" > بلا ترتيب</option>
                                     <option value="title-ascending">أبجدي أ-ي</option>
                                     <option value="title-descending"> أبجدي ي-أ</option>
                                     <option value="price-ascending">سعر تصاعدي</option>
@@ -492,9 +492,15 @@ export default {
 
              this.currentProducts = sortedProducts;
 
-       }
+       },
     },
 }
+$(document).on('click','#showMobNav',function(){
+      $('.aside.leftColumn').addClass('column-open ps-container ps-theme-default ps-active-y')
+})
+$(document).on('click','.tt-btn-col-close',function(){
+      $('.aside.leftColumn').removeClass('column-open ps-container ps-theme-default ps-active-y')
+})
 $(document).on('mouseenter','.tt-product.thumbprod-center',function(){
 //	console.log('yes')
   $('.tt-product.thumbprod-center').removeClass('hovered')
@@ -546,4 +552,10 @@ opacity: 1;
 .tt-collapse.open  .tt-collapse-content{display:block;transition: 1s ease-in-out;}
 .tt-collapse.close  .tt-collapse-content{display:none;transition: 1s ease-in-out;}
 li a{cursor: pointer;}
+.aside.leftColumn.column-open {
+    overflow-y: scroll !important;
+}
+.tt-btn-col-close a:before {
+    margin-left: 10px;
+}
 </style>

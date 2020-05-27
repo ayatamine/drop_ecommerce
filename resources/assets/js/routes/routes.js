@@ -8,7 +8,7 @@ import Products from '../components/Ara/products.vue';
 
 const routes =[
     {path:'/',component : Home,name:'Home'},
-    {path:'/products',component:Products,name:'products'},
+    {path:'/products/:category',component:Products,name:'products'},
 ];
 
 const router = new VueRouter({

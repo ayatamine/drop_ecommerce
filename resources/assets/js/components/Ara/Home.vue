@@ -1,5 +1,6 @@
 <template>
 <div>
+   <mainheader></mainheader>
    <div id="tt-pageContent">
 
     <div class="container-indent0" v-if="categories.length">
@@ -8,7 +9,7 @@
 				<div class="col-sm-12 col-md-6">
 					<div class="row">
 						<div class="col-sm-6">
-								<router-link to="/products" v-for="i in 2" :key="i" class="tt-promo-box tt-one-child hover-type-2">
+								<router-link  v-for="i in 2" :key="i" class="tt-promo-box tt-one-child hover-type-2" :to="'/products/'+categories[i].name.ar">
 								<img src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg"
 								@click="setCurrentCategory(categories[i])"
 								 class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-01.jpg'"
@@ -22,7 +23,7 @@
 								</router-link>
 						</div>
 						<div class="col-sm-6">
-							<router-link to="/products"  class="tt-promo-box tt-one-child hover-type-2" v-if="!!categories[3]">
+							<router-link   class="tt-promo-box tt-one-child hover-type-2" v-if="!!categories[3]" :to="'/products/'+categories[3].name.ar">
 								<img src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg"
 								@click="setCurrentCategory(categories[3])"
 								class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'"
@@ -40,7 +41,7 @@
 				<div class="col-sm-12 col-md-6">
 					<div class="row" v-if="categories.slice(3).length">
 						<div class="col-sm-6" v-for="i in (0,2)" :key="i" >
-							<router-link to="/products"  class="tt-promo-box tt-one-child hover-type-2">
+							<router-link  class="tt-promo-box tt-one-child hover-type-2" :to="'/products/'+categories.slice(3)[i].name.ar">
 								<img src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg"
 								@click="setCurrentCategory(categories.slice(3)[i])"
 								class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-04.jpg'"
@@ -54,7 +55,7 @@
 							</router-link>
 						</div>
 						<div class="col-sm-12" v-if="!!categories.slice(6)[0]">
-							<router-link to="/products"  class="tt-promo-box tt-one-child">
+							<router-link  class="tt-promo-box tt-one-child" :to="'/products/'+categories.slice(6)[0].name.ar">
 								<img src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg"
 								@click="setCurrentCategory(categories.slice(6)[0])"
 								 class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-06.jpg'"
@@ -250,6 +251,7 @@
 
 </template>
 <script>
+import mainheader from './header/Main.vue'
 import modalViewProduct from './modals/ModalViewProduct.vue'
 import mixins from '../../mixins/new_mixins.js';
 export default {
@@ -260,7 +262,7 @@ export default {
       }
   },
   components:{
-	  modalViewProduct
+	  modalViewProduct,mainheader
   },
    mixins:[mixins],
   created(){

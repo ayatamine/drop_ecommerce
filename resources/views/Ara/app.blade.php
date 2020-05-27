@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="app">
-	<header>
+	{{-- <header> --}}
 		<!-- tt-mobile menu -->
 		{{-- <nav class="panel-menu mobile-main-menu mm-right">
 			<ul>
@@ -466,7 +466,7 @@
 				</div>
 			</div>
 		</div> --}}
-	</header>
+	{{-- </header> --}}
     <global-index></global-index>
 
     <a href="#" class="tt-back-to-top">BACK TO TOP</a>

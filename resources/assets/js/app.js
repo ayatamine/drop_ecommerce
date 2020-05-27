@@ -83,7 +83,7 @@ const store = new Vuex.Store({
       currentCategory : {
         name : {
         ar: "كل المنتجات",
-        en: "All",
+        en: "all",
         tr: "كل المنتجات"
         },
         productsCount: 0,
@@ -147,7 +147,7 @@ const store = new Vuex.Store({
         let sessionCategories =localStorage.getItem('categories')
         if(!sessionCategories){
             let cat = new Set();
-            let allproducts = state.products.length > 0 ? state.product : state.featuredProducts;
+            let allproducts = state.products.length > 0 ? state.products : state.featuredProducts;
             allproducts.forEach(product=>{
               product.categories.forEach(element => {
 
