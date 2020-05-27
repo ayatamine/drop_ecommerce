@@ -52901,7 +52901,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.tt-img img[data-v-1e888a7a],.tt-img-roll-over img[data-v-1e888a7a]{height: 22rem !important;\n}\n.tt-product.thumbprod-center.hovered .tt-description[data-v-1e888a7a]{\r\n  top : -69px;\n}\n.tt-product.thumbprod-center.hovered .tt-product-inside-hover[data-v-1e888a7a]{\r\nopacity: 1;\n}\n.alert[data-v-1e888a7a]{\r\n    position: relative;\r\n    padding: .75rem 1.25rem;\r\n    margin-bottom: 1rem;\r\n    border: 1px solid transparent;\r\n    border-radius: .25rem;\n}\n.alert-info[data-v-1e888a7a]{\r\n    color: #0c5460;\r\n    background-color: #d1ecf1;\r\n    border-color: #bee5eb;\n}\n.tt-collapse.open  .tt-collapse-content[data-v-1e888a7a]{display:block;-webkit-transition: 1s ease-in-out;transition: 1s ease-in-out;\n}\n.tt-collapse.close  .tt-collapse-content[data-v-1e888a7a]{display:none;-webkit-transition: 1s ease-in-out;transition: 1s ease-in-out;\n}\nli a[data-v-1e888a7a]{cursor: pointer;\n}\r\n", ""]);
+exports.push([module.i, "\n.tt-img img[data-v-1e888a7a],.tt-img-roll-over img[data-v-1e888a7a]{height: 22rem !important;\n}\n.tt-product.thumbprod-center.hovered .tt-description[data-v-1e888a7a]{\r\n  top : -69px;\n}\n.tt-product.thumbprod-center.hovered .tt-product-inside-hover[data-v-1e888a7a]{\r\nopacity: 1;\n}\n.tt-collapse-content li.active[data-v-1e888a7a]{    color: #2879fe;\n}\n.tt-options-swatch li.active a[data-v-1e888a7a]{    background: #2879fe;\r\n    color: #ffffff;\n}\n.alert[data-v-1e888a7a]{\r\n    position: relative;\r\n    padding: .75rem 1.25rem;\r\n    margin-bottom: 1rem;\r\n    border: 1px solid transparent;\r\n    border-radius: .25rem;\n}\n.alert-info[data-v-1e888a7a]{\r\n    color: #0c5460;\r\n    background-color: #d1ecf1;\r\n    border-color: #bee5eb;\n}\n.tt-collapse.open  .tt-collapse-content[data-v-1e888a7a]{display:block;-webkit-transition: 1s ease-in-out;transition: 1s ease-in-out;\n}\n.tt-collapse.close  .tt-collapse-content[data-v-1e888a7a]{display:none;-webkit-transition: 1s ease-in-out;transition: 1s ease-in-out;\n}\nli a[data-v-1e888a7a]{cursor: pointer;\n}\r\n", ""]);
 
 // exports
 
@@ -53177,7 +53177,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -53187,7 +53186,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             currentProducts: [],
-            loading: true
+            loading: true,
+            SortProperty: '------'
         };
     },
 
@@ -53284,6 +53284,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
             this.loading = false;
+        },
+        filterBySize: function filterBySize(size) {
+            //console.log(price)
+            this.loading = true;
+            if (size == '0') {
+                this.filterByCategory();
+            } else {
+                var intsize = parseInt(size);
+                if (!!this.currentCategory && this.currentCategory.name.en != 'all') {
+                    if (this.currentProducts.length == 0) {
+                        this.filterByCategory();
+                    }
+                    //console.log(type)
+                    var fil = this.currentProducts.filter(function (element) {
+                        return element.variations.some(function (v) {
+                            return v.attributes[0].name.en == 'size' && parseInt(v.attributes[0].option.en) < intsize;
+                        });
+                    }).map(function (element) {
+                        return Object.assign({}, element, { variations: element.variations.filter(function (subElement) {
+                                return subElement.attributes[0].name.en == 'size' && parseInt(v.attributes[0].option.en) < intprice;
+                            }) });
+                    });
+                    this.currentProducts = fil;
+                }
+            }
+            this.loading = false;
+        },
+        filterByTag: function filterByTag(tag) {
+            var allproducts = this.products;
+            //console.log(price)
+            this.loading = true;
+            if (tag == 'all') {
+                this.filterByCategory();
+            } else {
+
+                var type = tag;
+                //console.log(type)
+                var fil = allproducts.filter(function (element) {
+                    return element.categories.some(function (c) {
+                        return c.name.en.includes(type);
+                    });
+                }).map(function (element) {
+                    return Object.assign({}, element, { categories: element.categories.filter(function (subElement) {
+                            return subElement.name.en == type;
+                        }) });
+                });
+                this.currentProducts = fil;
+            }
+            this.loading = false;
         }
     },
     computed: {
@@ -53295,6 +53344,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         products: function products() {
             return this.$store.getters.products;
+        }
+    },
+    watch: {
+        SortProperty: function SortProperty(query) {
+            var sortedProducts = [];var allproducts = [];
+            if (this.currentCategory.name.en == 'all') {
+                allproducts = this.products;
+            } else {
+                allproducts = this.currentProducts;
+            }
+
+            switch (query) {
+
+                case 'title-ascending':
+                    sortedProducts = allproducts.sort(function (a, b) {
+
+                        if (a.name.ar.substring(0, 1) > b.name.ar.substring(0, 1)) {
+                            return 1;
+                        } else {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    break;
+                case 'title-descending':
+                    sortedProducts = allproducts.sort(function (a, b) {
+
+                        if (a.name.ar.substring(0, 1) > b.name.ar.substring(0, 1)) {
+                            return -1;
+                        } else {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                    break;
+                case 'price-ascending':
+                    sortedProducts = allproducts.sort(function (a, b) {
+
+                        if (a.variations[0].sale_price > b.variations[0].sale_price) {
+                            return 1;
+                        } else {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    break;
+                case 'price-descending':
+                    sortedProducts = allproducts.sort(function (a, b) {
+
+                        if (a.variations[0].sale_price < b.variations[0].sale_price) {
+                            return 1;
+                        } else {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    break;
+
+                default:
+                    sortedProducts = this.currentProducts;
+                    break;
+            }
+
+            this.currentProducts = sortedProducts;
         }
     }
 });
@@ -53312,6 +53425,10 @@ $(document).on('click', '.tt-collapse-title', function () {
     }
 });
 $(document).on('click', '.tt-list-row li', function () {
+    $(this).siblings('li').removeClass('active');
+    $(this).addClass('active');
+});
+$(document).on('click', '.tt-collapse-content li', function () {
     $(this).siblings('li').removeClass('active');
     $(this).addClass('active');
 });
@@ -53370,10 +53487,8 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(1),
                   _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
                   _vm.categories.length
-                    ? _c("div", { staticClass: "tt-collapse open" }, [
+                    ? _c("div", { staticClass: "tt-collapse close" }, [
                         _c("h3", { staticClass: "tt-collapse-title" }, [
                           _vm._v("أصناف المنتجات")
                         ]),
@@ -53424,7 +53539,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "tt-collapse open" }, [
                     _c("h3", { staticClass: "tt-collapse-title" }, [
-                      _vm._v("FILTER BY PRICE")
+                      _vm._v("حسب السعر")
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "tt-collapse-content" }, [
@@ -53529,15 +53644,295 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _c("div", { staticClass: "tt-collapse open" }, [
+                    _c("h3", { staticClass: "tt-collapse-title" }, [
+                      _vm._v("حسب الحجم")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "tt-collapse-content" }, [
+                      _c(
+                        "ul",
+                        { staticClass: "tt-options-swatch options-middle" },
+                        [
+                          _c(
+                            "li",
+                            {
+                              staticClass: "active",
+                              on: {
+                                click: function($event) {
+                                  return _vm.filterBySize("0")
+                                }
+                              }
+                            },
+                            [_c("a", [_vm._v("كل الأحجام")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.filterBySize("4")
+                                }
+                              }
+                            },
+                            [_c("a", [_vm._v("4")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.filterBySize("8")
+                                }
+                              }
+                            },
+                            [_c("a", [_vm._v("8")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.filterBySize("16")
+                                }
+                              }
+                            },
+                            [_c("a", [_vm._v("16")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.filterBySize("32")
+                                }
+                              }
+                            },
+                            [_c("a", [_vm._v("24")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.filterBySize("32")
+                                }
+                              }
+                            },
+                            [_c("a", [_vm._v("32")])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.filterBySize("58")
+                                }
+                              }
+                            },
+                            [_c("a", [_vm._v("58")])]
+                          )
+                        ]
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _vm._m(6),
-                  _vm._v(" "),
-                  _vm._m(7)
+                  _c("div", { staticClass: "tt-collapse open" }, [
+                    _c("h3", { staticClass: "tt-collapse-title" }, [
+                      _vm._v("كلمات مفتاحية")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "tt-collapse-content" }, [
+                      _c("ul", { staticClass: "tt-list-inline" }, [
+                        _c(
+                          "li",
+                          {
+                            staticClass: "active",
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("all")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("الكل")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Dresses")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("فساتين")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Shirts")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("قمصان ")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Polo Shirts")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("قمصان بولو")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Sweaters")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("معاطف")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Blazers")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("سترات")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Jackets")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("جاكيت")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("shoe")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("أحدية")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Activewear")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("ملابس رياضية")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Pants")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("بنطال")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Jumpsuits")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("حلل")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Shorts")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("السراويل القصيرة")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Jeans")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("جينز")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Skirt")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("تنانير")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.filterByTag("Swim")
+                              }
+                            }
+                          },
+                          [_c("a", [_vm._v("ملابس سباحة")])]
+                        )
+                      ])
+                    ])
+                  ])
                 ]
               ),
               _vm._v(" "),
@@ -53571,11 +53966,71 @@ var render = function() {
                             _vm._v("الكل\t")
                           ]),
                       _vm._v(" "),
-                      _vm._m(8),
+                      _vm._m(2),
                       _vm._v(" "),
-                      _vm._m(9),
+                      _c("div", { staticClass: "tt-sort" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.SortProperty,
+                                expression: "SortProperty"
+                              }
+                            ],
+                            staticStyle: { padding: "4px" },
+                            attrs: { name: "SortBy", id: "SortBy" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.SortProperty = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "all" } }, [
+                              _vm._v(" بلا ترتيب")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              { attrs: { value: "title-ascending" } },
+                              [_vm._v("أبجدي أ-ي")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              { attrs: { value: "title-descending" } },
+                              [_vm._v(" أبجدي ي-أ")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              { attrs: { value: "price-ascending" } },
+                              [_vm._v("سعر تصاعدي")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              { attrs: { value: "price-descending" } },
+                              [_vm._v("سعر تنازلي")]
+                            )
+                          ]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _vm._m(10)
+                      _vm._m(3)
                     ]),
                     _vm._v(" "),
                     _vm.loading
@@ -53589,7 +54044,7 @@ var render = function() {
                                 key: i,
                                 staticClass: "col-6 col-md-4 tt-col-item"
                               },
-                              [_vm._m(11, true)]
+                              [_vm._m(4, true)]
                             )
                           }),
                           0
@@ -53725,7 +54180,7 @@ var render = function() {
                                       "div",
                                       { staticClass: "tt-description" },
                                       [
-                                        _vm._m(12, true),
+                                        _vm._m(5, true),
                                         _vm._v(" "),
                                         _c("h2", { staticClass: "tt-title" }, [
                                           _c(
@@ -53764,7 +54219,7 @@ var render = function() {
                                               "tt-product-inside-hover"
                                           },
                                           [
-                                            _vm._m(13, true),
+                                            _vm._m(6, true),
                                             _vm._v(" "),
                                             _c(
                                               "div",
@@ -53855,294 +54310,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tt-collapse open" }, [
-      _c("h3", { staticClass: "tt-collapse-title" }, [_vm._v("SORT BY")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tt-collapse-content" }, [
-        _c("ul", { staticClass: "tt-filter-list" }, [
-          _c("li", { staticClass: "active" }, [
-            _c("a", { attrs: { href: "#" } }, [_vm._v("Shirts & Tops")])
-          ]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("XS")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("White")])])
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "btn-link-02", attrs: { href: "#" } }, [
-          _vm._v("Clear All")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tt-collapse open" }, [
-      _c("h3", { staticClass: "tt-collapse-title" }, [
-        _vm._v("FILTER BY SIZE")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tt-collapse-content" }, [
-        _c("ul", { staticClass: "tt-options-swatch options-middle" }, [
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("4")])]),
-          _vm._v(" "),
-          _c("li", { staticClass: "active" }, [
-            _c("a", { attrs: { href: "#" } }, [_vm._v("6")])
-          ]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("8")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("10")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("12")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("14")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("16")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("18")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("20")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("22")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("24")])])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tt-collapse open" }, [
-      _c("h3", { staticClass: "tt-collapse-title" }, [
-        _vm._v("FILTER BY COLOR")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tt-collapse-content" }, [
-        _c("ul", { staticClass: "tt-options-swatch options-middle" }, [
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-border tt-color-bg-08",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-09",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "active" }, [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-10",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-11",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-12",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-13",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-14",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-15",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-16",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-17",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", {
-              staticClass: "options-color tt-color-bg-18",
-              attrs: { href: "#" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { staticClass: "options-color", attrs: { href: "#" } }, [
-              _c("span", { staticClass: "swatch-img" }, [
-                _c("img", {
-                  attrs: { src: "images/custom/texture-img-01.jpg", alt: "" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "swatch-label color-black" })
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tt-collapse open" }, [
-      _c("h3", { staticClass: "tt-collapse-title" }, [_vm._v("VENDOR")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tt-collapse-content" }, [
-        _c("ul", { staticClass: "tt-list-row" }, [
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Levi's")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Gap")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Polo")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Lacoste")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Guess")])])
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "btn-link-02", attrs: { href: "#" } }, [
-          _vm._v("+ More")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tt-collapse open" }, [
-      _c("h3", { staticClass: "tt-collapse-title" }, [_vm._v("TAGS")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tt-collapse-content" }, [
-        _c("ul", { staticClass: "tt-list-inline" }, [
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Dresses")])]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "#" } }, [_vm._v("Shirts & Tops")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "#" } }, [_vm._v("Polo Shirts")])
-          ]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Sweaters")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Blazers")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Vests")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Jackets")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Outerwear")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Activewear")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Pants")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Jumpsuits")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Shorts")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Jeans")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Skirts")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Swimwear")])])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tt-content-aside" }, [
-      _c(
-        "a",
-        {
-          staticClass: "tt-promo-03",
-          attrs: { href: "listing-left-column.html" }
-        },
-        [
-          _c("img", {
-            attrs: { src: "images/custom/listing_promo_img_07.jpg", alt: "" }
-          })
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "tt-btn-toggle" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("FILTER")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tt-sort" }, [
-      _c("select", [
-        _c("option", { attrs: { value: "Default Sorting" } }, [
-          _vm._v("Default Sorting")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "Default Sorting" } }, [
-          _vm._v("Default Sorting 02")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "Default Sorting" } }, [
-          _vm._v("Default Sorting 03")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("select", [
-        _c("option", { attrs: { value: "Show" } }, [_vm._v("Show")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "9" } }, [_vm._v("9")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "16" } }, [_vm._v("16")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "32" } }, [_vm._v("32")])
-      ])
+      _c("a", { attrs: { href: "#" } }, [_vm._v("قلترة")])
     ])
   },
   function() {

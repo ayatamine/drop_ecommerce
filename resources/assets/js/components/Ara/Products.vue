@@ -25,7 +25,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="tt-collapse open">
+					<!-- <div class="tt-collapse open">
 						<h3 class="tt-collapse-title">SORT BY</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-filter-list">
@@ -41,8 +41,8 @@
 							</ul>
 							<a href="#" class="btn-link-02">Clear All</a>
 						</div>
-					</div>
-					<div class="tt-collapse open" v-if="categories.length">
+					</div> -->
+					<div class="tt-collapse close" v-if="categories.length">
 						<h3 class="tt-collapse-title">أصناف المنتجات</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-list-row">
@@ -55,7 +55,7 @@
 						</div>
 					</div>
 					<div class="tt-collapse open">
-						<h3 class="tt-collapse-title">FILTER BY PRICE</h3>
+						<h3 class="tt-collapse-title">حسب السعر</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-list-row">
 								<li @click="filterByPrice('0')" class="active"><a >الكل</a></li>
@@ -67,24 +67,20 @@
 						</div>
 					</div>
 					<div class="tt-collapse open">
-						<h3 class="tt-collapse-title">FILTER BY SIZE</h3>
+						<h3 class="tt-collapse-title">حسب الحجم</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-options-swatch options-middle">
-								<li><a href="#">4</a></li>
-								<li class="active"><a href="#">6</a></li>
-								<li><a href="#">8</a></li>
-								<li><a href="#">10</a></li>
-								<li><a href="#">12</a></li>
-								<li><a href="#">14</a></li>
-								<li><a href="#">16</a></li>
-								<li><a href="#">18</a></li>
-								<li><a href="#">20</a></li>
-								<li><a href="#">22</a></li>
-								<li><a href="#">24</a></li>
+								<li @click="filterBySize('0')" class="active"><a>كل الأحجام</a></li>
+								<li @click="filterBySize('4')"><a>4</a></li>
+								<li @click="filterBySize('8')"><a>8</a></li>
+								<li @click="filterBySize('16')"><a>16</a></li>
+								<li @click="filterBySize('32')"><a>24</a></li>
+								<li @click="filterBySize('32')"><a>32</a></li>
+								<li @click="filterBySize('58')"><a>58</a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="tt-collapse open">
+					<!-- <div class="tt-collapse open">
 						<h3 class="tt-collapse-title">FILTER BY COLOR</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-options-swatch options-middle">
@@ -120,34 +116,34 @@
 							</ul>
 							<a href="#" class="btn-link-02">+ More</a>
 						</div>
-					</div>
+					</div> -->
 					<div class="tt-collapse open">
-						<h3 class="tt-collapse-title">TAGS</h3>
+						<h3 class="tt-collapse-title">كلمات مفتاحية</h3>
 						<div class="tt-collapse-content">
 							<ul class="tt-list-inline">
-								<li><a href="#">Dresses</a></li>
-								<li><a href="#">Shirts &amp; Tops</a></li>
-								<li><a href="#">Polo Shirts</a></li>
-								<li><a href="#">Sweaters</a></li>
-								<li><a href="#">Blazers</a></li>
-								<li><a href="#">Vests</a></li>
-								<li><a href="#">Jackets</a></li>
-								<li><a href="#">Outerwear</a></li>
-								<li><a href="#">Activewear</a></li>
-								<li><a href="#">Pants</a></li>
-								<li><a href="#">Jumpsuits</a></li>
-								<li><a href="#">Shorts</a></li>
-								<li><a href="#">Jeans</a></li>
-								<li><a href="#">Skirts</a></li>
-								<li><a href="#">Swimwear</a></li>
+								<li @click="filterByTag('all')" class="active"><a>الكل</a></li>
+								<li @click="filterByTag('Dresses')" ><a>فساتين</a></li>
+								<li @click="filterByTag('Shirts')"><a>قمصان </a></li>
+								<li @click="filterByTag('Polo Shirts')"><a>قمصان بولو</a></li>
+								<li @click="filterByTag('Sweaters')"><a>معاطف</a></li>
+								<li @click="filterByTag('Blazers')"><a>سترات</a></li>
+								<li @click="filterByTag('Jackets')"><a>جاكيت</a></li>
+								<li @click="filterByTag('shoe')"><a>أحدية</a></li>
+								<li @click="filterByTag('Activewear')"><a>ملابس رياضية</a></li>
+								<li @click="filterByTag('Pants')"><a>بنطال</a></li>
+								<li @click="filterByTag('Jumpsuits')"><a>حلل</a></li>
+								<li @click="filterByTag('Shorts')"><a>السراويل القصيرة</a></li>
+								<li @click="filterByTag('Jeans')"><a>جينز</a></li>
+								<li @click="filterByTag('Skirt')"><a>تنانير</a></li>
+								<li @click="filterByTag('Swim')"><a>ملابس سباحة</a></li>
 							</ul>
 						</div>
 					</div>
-					<div class="tt-content-aside">
+					<!-- <div class="tt-content-aside">
 						<a href="listing-left-column.html" class="tt-promo-03">
 							<img src="images/custom/listing_promo_img_07.jpg" alt="">
 						</a>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-md-12 col-lg-9 col-xl-9">
 					<div class="content-indent container-fluid-custom-mobile-padding-02">
@@ -158,20 +154,23 @@
 							</h1>
 							<h1 class="tt-title" v-else>الكل	</h1>
 							<div class="tt-btn-toggle">
-								<a href="#">FILTER</a>
+								<a href="#">قلترة</a>
 							</div>
 							<div class="tt-sort">
-								<select>
-									<option value="Default Sorting">Default Sorting</option>
-									<option value="Default Sorting">Default Sorting 02</option>
-									<option value="Default Sorting">Default Sorting 03</option>
-								</select>
-								<select>
+								 <select name="SortBy" v-model="SortProperty"  id="SortBy" style="padding: 4px;">
+                                    <option value="all" > بلا ترتيب</option>
+                                    <option value="title-ascending">أبجدي أ-ي</option>
+                                    <option value="title-descending"> أبجدي ي-أ</option>
+                                    <option value="price-ascending">سعر تصاعدي</option>
+                                    <option value="price-descending">سعر تنازلي</option>
+
+                                </select>
+							<!-- 	<select>
 									<option value="Show">Show</option>
 									<option value="9">9</option>
 									<option value="16">16</option>
 									<option value="32">32</option>
-								</select>
+								</select> -->
 							</div>
 							<div class="tt-quantity">
 								<a href="#" class="tt-col-one" data-value="tt-col-one"></a>
@@ -271,6 +270,7 @@ export default {
       return {
           currentProducts:[],
           loading :true,
+            SortProperty :'------'
       }
   },
   components:{
@@ -366,9 +366,52 @@ export default {
                 }
            }
            this.loading = false;
-    }
+    },
+    filterBySize(size){
+           //console.log(price)
+           this.loading = true;
+           if(size == '0' ){
+              this.filterByCategory();
+           }else{
+                var intsize = parseInt(size);
+                if(!!this.currentCategory && this.currentCategory.name.en != 'all'){
+                    if(this.currentProducts.length ==0){this.filterByCategory()}
+                    //console.log(type)
+                    let fil = this.currentProducts
+                    .filter((element) =>
+                        element.variations.some((v) => ((v.attributes[0].name.en =='size') && (parseInt(v.attributes[0].option.en) < intsize) ) ))
+                    .map(element => {
+                        return Object.assign({}, element, {variations : element.variations.filter(subElement => ((subElement.attributes[0].name.en =='size')  && (parseInt(v.attributes[0].option.en) < intprice) ))});
 
-  },
+                    });
+                    this.currentProducts = fil;
+                }
+           }
+           this.loading = false;
+    },
+    filterByTag(tag){
+        let allproducts = this.products;
+           //console.log(price)
+           this.loading = true;
+           if(tag == 'all' ){
+              this.filterByCategory();
+           }else{
+
+                    let type = tag;
+                    //console.log(type)
+                    let fil = allproducts
+                    .filter((element) =>
+                        element.categories.some((c) => (c.name.en.includes(type)) ))
+                    .map(element => {
+                        return Object.assign({}, element, {categories : element.categories.filter(subElement => (subElement.name.en == type ))});
+
+                    });
+                    this.currentProducts = fil;
+
+           }
+           this.loading = false;
+    }
+    },
   computed:{
       categories(){
           return this.$store.getters.categories
@@ -380,7 +423,77 @@ export default {
           return this.$store.getters.products
       }
 
-  }
+  },
+   watch:{
+       SortProperty(query){
+              let sortedProducts = []; let allproducts =[];
+              if(this.currentCategory.name.en =='all'){
+                    allproducts = this.products;
+              }else{
+                   allproducts = this.currentProducts;
+              }
+
+              switch(query){
+
+              case 'title-ascending':
+                sortedProducts = allproducts.sort(function(a, b) {
+
+                     if((a.name.ar).substring(0,1) > (b.name.ar).substring(0,1))
+                    {
+                        return 1;
+                    }else{
+                        return -1;
+                    }
+                    return 0;
+                });
+                  break;
+              case 'title-descending':
+                   sortedProducts = allproducts.sort(function(a, b) {
+
+                     if((a.name.ar).substring(0,1) > (b.name.ar).substring(0,1))
+                    {
+                        return -1;
+                    }else{
+                        return 1;
+                    }
+                    return 0;
+                    });
+                      break;
+              case 'price-ascending':
+                   sortedProducts = allproducts.sort(function(a, b) {
+
+                     if((a.variations[0].sale_price) > (b.variations[0].sale_price))
+                    {
+                        return 1;
+                    }else{
+                        return -1;
+                    }
+                    return 0;
+                    });
+                      break;
+              case 'price-descending':
+                   sortedProducts = allproducts.sort(function(a, b) {
+
+                     if((a.variations[0].sale_price) < (b.variations[0].sale_price))
+                    {
+                        return 1;
+                    }else{
+                        return -1;
+                    }
+                    return 0;
+                    });
+                     break;
+
+                   default:
+                       sortedProducts =  this.currentProducts;
+                       break;
+                }
+
+
+             this.currentProducts = sortedProducts;
+
+       }
+    },
 }
 $(document).on('mouseenter','.tt-product.thumbprod-center',function(){
 //	console.log('yes')
@@ -401,6 +514,11 @@ $(document).on('click','.tt-list-row li',function(){
     $(this).addClass('active')
 
 })
+$(document).on('click','.tt-collapse-content li',function(){
+     $(this).siblings('li').removeClass('active')
+    $(this).addClass('active')
+
+})
 </script>
 <style  scoped>
 .tt-img img,.tt-img-roll-over img{height: 22rem !important;}
@@ -410,6 +528,9 @@ $(document).on('click','.tt-list-row li',function(){
 .tt-product.thumbprod-center.hovered .tt-product-inside-hover{
 opacity: 1;
 }
+.tt-collapse-content li.active{    color: #2879fe;}
+.tt-options-swatch li.active a{    background: #2879fe;
+    color: #ffffff;}
 .alert{
     position: relative;
     padding: .75rem 1.25rem;
