@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Util\Products;
 use App\Cart;
-use auth;
+use Auth;
 use Session;
 use App\Pages;
 use App\MailingList;
@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         //$this->middleware('auth')->except('index','loginPage');
         $this->p = $products;
-        
+
     }
 
     /**
@@ -38,16 +38,16 @@ class HomeController extends Controller
             Session::put('lang','En');
         }
 
-        
+
         return view($this->lang().'.home');
     }
     //the change lang function
     public function setLang($lang){
         Session::put('lang',$lang);
-       
+
         return redirect()->back();
     }
-    //get the current lang 
+    //get the current lang
     public function lang(){
         return Session::get('lang');
     }
@@ -55,12 +55,12 @@ class HomeController extends Controller
          return collect($this->p->getCategories());
     }
     public function getProducts(){
-        
-        return response()->json($this->p->getProducts()); 
+
+        return response()->json($this->p->getProducts());
     }
     public function get10Products(){
-        
-        return response()->json($this->p->get10Products()); 
+
+        return response()->json($this->p->get10Products());
     }
     public function getProductBySku($sku){
         return response()->json($this->p->getProductBySku($sku));
@@ -71,7 +71,7 @@ class HomeController extends Controller
     public function getCurrencies(){
         return response()->json($this->p->getCurrencies());
     }
-    //payments 
+    //payments
     public function payments($sku){
         dd($this->p->payments($sku));
     }
@@ -79,7 +79,7 @@ class HomeController extends Controller
         return view($this->lang().'.login');
     }
 
-    //the product page 
+    //the product page
     public function products(){
        // $products = $this->p->getProducts();
        // $categories = collect($this->p->getCategories())->splice(20);
@@ -94,18 +94,18 @@ class HomeController extends Controller
         return view($this->lang().'.productDetails',compact('sku','incart'));
     }
     public $pageContent = null;
-    //the static pages 
+    //the static pages
     public function getPageBySlug($slug){
         $pageContent =  Pages::findBySlug($slug);
         return view($this->lang().'.staticpages',compact('pageContent'));
      }
-     public function about_us(){ 
+     public function about_us(){
           return  $this->getPageBySlug('about_us');
      }
-     public function terms(){ 
+     public function terms(){
          return  $this->getPageBySlug('terms');
      }
-     public function faq(){ 
+     public function faq(){
          return  $this->getPageBySlug('faq');
      }
      public function contact_us(){
@@ -113,7 +113,7 @@ class HomeController extends Controller
      }
      //the user contact us form page
      public function contact_us_add(Request $request){
-       
+
         if($request->lang == null){
             Mail::send('mail.contact_us',['request'=>$request,'site_name_e'=>'trisoline ecommerce'],function($message) use ($request){
                 $message->to('ayatir04@gmail.com');
@@ -128,11 +128,11 @@ class HomeController extends Controller
            });
            return response()->json(['success'=>'تم إرسال الرسالة بنجاح وسيتم الرد عليك قريبا']);
 
-        
+
 
       }
       public function mailinglist(Request $request){
-         
+
           $this->validate($request,[
             'email'=>'string|required'
           ]);
@@ -149,10 +149,10 @@ class HomeController extends Controller
           if($this->lang() == 'Ar'){
             return response()->json(['type'=>'success','data'=>'تم الاشتراك شكرا لك']);
           }
-         
+
           return response()->json(['type'=>'success','data'=>'Email subscribed successfuly,Thanks']);
       }
-      
+
 
      public function dashboard(){
          return  view($this->lang().'.dashboard.index');
@@ -161,7 +161,11 @@ class HomeController extends Controller
        return Auth::user();
      }
      public function userBillinginfo(){
-         
+
          return Auth::user()->billingInfo()->first();
+     }
+     public function userlogout(){
+        return Auth::logout();
+         //response()->json(['message'=>'success']);
      }
 }

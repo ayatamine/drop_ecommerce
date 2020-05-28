@@ -14,7 +14,7 @@
 			<div class="row "><!-- flex-sm-row-reverse -->
 				<div class="col-md-4 col-lg-3 col-xl-3 leftColumn rightColumn aside">
 					<div class="tt-btn-col-close">
-						<a href="#">إغلاق</a>
+						<a >إغلاق</a>
 					</div>
 					<div class="tt-collapse open tt-filter-detach-option">
 						<div class="tt-collapse-content">
@@ -525,6 +525,11 @@ $(document).on('click','.tt-collapse-content li',function(){
     $(this).addClass('active')
 
 })
+$(document).on('mouseleave','.tt-product.thumbprod-center',function(){
+	//console.log('yes')
+  $('.tt-product.thumbprod-center').removeClass('hovered')
+
+})
 </script>
 <style  scoped>
 .tt-img img,.tt-img-roll-over img{height: 22rem !important;}
@@ -553,8 +558,9 @@ opacity: 1;
 .tt-collapse.close  .tt-collapse-content{display:none;transition: 1s ease-in-out;}
 li a{cursor: pointer;}
 .aside.leftColumn.column-open {
-    overflow-y: scroll !important;
+    overflow-y: scroll !important;z-index: 9999;
 }
+.tt-btn-col-close{cursor: pointer;}
 .tt-btn-col-close a:before {
     margin-left: 10px;
 }

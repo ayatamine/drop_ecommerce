@@ -366,6 +366,11 @@ $(document).on('mouseenter','.tt-product.thumbprod-center',function(){
   $('.tt-product.thumbprod-center').removeClass('hovered')
   $(this).addClass('hovered')
 })
+$(document).on('mouseleave','.tt-product.thumbprod-center',function(){
+	//console.log('yes')
+  $('.tt-product.thumbprod-center').removeClass('hovered')
+
+})
 </script>
 <style  scoped>
 .tt-img img,.tt-img-roll-over img{height: 22rem !important;}

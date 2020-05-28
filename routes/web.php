@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,8 +26,6 @@ Route::group(['as'=>'frontEnd.','middleware'=>'web'],function(){
     /* Route::get('/home', 'frontEndController@index')->name('home');
     Route::get('/men', 'frontEndController@men')->name('men');
     Route::get('/products', 'frontEndController@products')->name('products'); */
-    //using vue router
-   /*  Route::get('{any}','frontEndController@index')->where('any','.*'); */
 
     Route::get('/getCategories', 'HomeController@getCategories');
     Route::get('/get10Products', 'HomeController@get10Products');
@@ -43,9 +39,6 @@ Route::group(['as'=>'frontEnd.','middleware'=>'web'],function(){
     Route::get('/lang/{lang}','HomeController@setLang')->name('setLang');
     //register new user
     Route::post('/users/store','UserController@store')->name('users.store');
-    Route::get('/users/auth',function(){
-          return Auth::user();
-    });
     //get the favorite page
     Route::get('/favorites','UserController@favorites_page')->name('user.favorites');
     //get the cart page
@@ -57,7 +50,8 @@ Route::group(['as'=>'frontEnd.','middleware'=>'web'],function(){
        return view('En.verifyEmail');
     })->name('email.activation');
     Route::get('/verifyEmail/{emailtokenv}','UserController@verifyEmailg')->name('email.verifyg');
-    Route::post('/verifyEmail','UserController@verifyEmail')->name('email.verify');
+    /* Route::post('/verifyEmail','UserController@verifyEmail')->name('email.verify'); */
+    Route::post('/verifyEmail2','UserController@verifyEmail2')->name('email.verify2');
     //the static pages
     Route::get('/about_us','HomeController@about_us')->name('about_us');
     Route::get('/terms','HomeController@terms')->name('terms');
@@ -121,6 +115,7 @@ Route::group(['as'=>'user.','middleware'=>'auth'],function(){
    Route::get('/user/carItems/{id}/delete','UserController@removeCartItem')->name('removeCartItem');
    //the dashboard
    Route::get('/userinfo','HomeController@userinfo')->name('userinfo');
+   Route::get('/userlogout','HomeController@userlogout')->name('userlogout');
    Route::get('/dashboard','HomeController@dashboard')->name('dashboard');
    Route::get('/settings','UserController@settings')->name('settings');
    Route::post('/user/update','UserController@update')->name('update');

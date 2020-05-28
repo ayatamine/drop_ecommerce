@@ -41,6 +41,7 @@ class frontEndController extends Controller
        return view($this->lang().'.home');
    }
 
+
    //the men cat page
    public function men(){
     // $products = $this->p->getProducts();

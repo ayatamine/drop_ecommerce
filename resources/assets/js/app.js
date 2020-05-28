@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -73,113 +72,128 @@ Vue.component('global-index', require('./components/Ara/GlobalIndex.vue'));
 import router from './routes/routes'
 
 const store = new Vuex.Store({
-    state:{
-      categories :[],
-      activeCategory:'',
-      products :{},
-      featuredProducts :[],
-      productInViewer:null,
-      user:null,
-      currentCategory : {
-        name : {
-        ar: "كل المنتجات",
-        en: "all",
-        tr: "كل المنتجات"
+    state: {
+        categories: [],
+        activeCategory: '',
+        products: {},
+        featuredProducts: [],
+        productInViewer: null,
+        user: null,
+        currentCategory: {
+            name: {
+                ar: "كل المنتجات",
+                en: "all",
+                tr: "كل المنتجات"
+            },
+            productsCount: 0,
         },
-        productsCount: 0,
-      },
-      currentProducts :[],
-      currencies :{},
-      currenciesSigns :{
-        'USD':'$',
-        'EUR':'€',
-        'GBP':'£',
-        'TRY':'₺'
-      },
-      currentCurrency:'USD',
-      currencyRate :1,//0.174,
-      currencySign:'$',
-      productDetails:{},
+        currentProducts: [],
+        currencies: {},
+        currenciesSigns: {
+            'USD': '$',
+            'EUR': '€',
+            'GBP': '£',
+            'TRY': '₺'
+        },
+        currentCurrency: 'USD',
+        currencyRate: 1, //0.174,
+        currencySign: '$',
+        productDetails: {},
 
-      favoritedProducts : [],
-      cartItems:[],
-      lang:null,
+        favoritedProducts: [],
+        cartItems: [],
+        lang: null,
     },
-    getters:{
-       products(state){
+    getters: {
+        auth(state) {
+            return state.user
+        },
+        products(state) {
             return state.products
-       },
-       featuredProducts(state){
+        },
+        featuredProducts(state) {
             return state.featuredProducts
-       },
-       categories(state){
-         return state.categories;
-       },
-       productInViewer(state){
-         return state.productInViewer;
-       }
-
-    },
-    mutations:{
-      setProducts(state,products){
-        state.products = products;
-        localStorage.setItem('products',JSON.stringify(products))
-        state.currentCategory.productsCount = products.length
-      },
-      setFeateredProducts(state,products){
-        state.featuredProducts = products;
-        localStorage.setItem('featuredProducts',JSON.stringify(products))
-      },
-      setCategories(state,payload){
-           state.categories = payload;
-      },
-      setProductInViewer(state,product){
-          //console.log(product)
-          state.productInViewer = product
-      },
-      setCurrentCategory(state,category){
-             state.currentCategory = category;
-      }
-
-    },
-    actions:{
-      setCategories({commit,state}){
-        let sessionCategories =localStorage.getItem('categories')
-        if(!sessionCategories){
-            let cat = new Set();
-            let allproducts = state.products.length > 0 ? state.products : state.featuredProducts;
-            allproducts.forEach(product=>{
-              product.categories.forEach(element => {
-
-                cat.add(element);
-              });
-            })
-            //remove duplicated categories
-            const uniqueCategories = Array.from(cat)
-            .map(e => e['id'])
-
-            // store the keys of the unique objects
-            .map((e, i, final) => final.indexOf(e) === i && i)
-
-            // eliminate the dead keys & store unique objects
-            .filter(e => Array.from(cat)[e]).map(e => Array.from(cat)[e]);
-            //console.log('uniquecat',uniqueCategories)
-            commit('setCategories',uniqueCategories);
-        }else{
-              commit('setCategories',JSON.parse(sessionCategories));
+        },
+        categories(state) {
+            return state.categories;
+        },
+        productInViewer(state) {
+            return state.productInViewer;
         }
-      },
+
+    },
+    mutations: {
+        setUser(state) {
+            if (!state.user) {
+                axios.get('/userinfo')
+                    .then(res => {
+                        //console.log('auth', res)
+                        state.user = res.data;
+                    })
+                    .catch(err => {
+                        //console.log(err)
+                    })
+            }
+        },
+        setProducts(state, products) {
+            state.products = products;
+            localStorage.setItem('products', JSON.stringify(products))
+            state.currentCategory.productsCount = products.length
+        },
+        setFeateredProducts(state, products) {
+            state.featuredProducts = products;
+            localStorage.setItem('featuredProducts', JSON.stringify(products))
+        },
+        setCategories(state, payload) {
+            state.categories = payload;
+        },
+        setProductInViewer(state, product) {
+            //console.log(product)
+            state.productInViewer = product
+        },
+        setCurrentCategory(state, category) {
+            state.currentCategory = category;
+        }
+
+    },
+    actions: {
+        setCategories({ commit, state }) {
+            let sessionCategories = localStorage.getItem('categories')
+            if (!sessionCategories) {
+                let cat = new Set();
+                let allproducts = state.products.length > 0 ? state.products : state.featuredProducts;
+                allproducts.forEach(product => {
+                        product.categories.forEach(element => {
+
+                            cat.add(element);
+                        });
+                    })
+                    //remove duplicated categories
+                const uniqueCategories = Array.from(cat)
+                    .map(e => e['id'])
+
+                // store the keys of the unique objects
+                .map((e, i, final) => final.indexOf(e) === i && i)
+
+                // eliminate the dead keys & store unique objects
+                .filter(e => Array.from(cat)[e]).map(e => Array.from(cat)[e]);
+                //console.log('uniquecat',uniqueCategories)
+                commit('setCategories', uniqueCategories);
+            } else {
+                commit('setCategories', JSON.parse(sessionCategories));
+            }
+        },
 
     }
 })
 
 const app = new Vue({
     el: '#app',
-    store : store,
+    store: store,
     router,
 });
 
 const adminapp = new Vue({
     el: '#adminapp',
-    store : store
+    store: store
 });

@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         //$this->middleware('auth')->except('index','loginPage');
         $this->p = $products;
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -54,7 +54,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     //get the current lang 
+     //get the current lang
      public function lang(){
         return Session::get('lang');
     }
@@ -110,7 +110,7 @@ class UserController extends Controller
    });
        return response()->json(['success'=>'success,we sent you an activation code, please check your email']);
     }
-    //return the errors messages 
+    //return the errors messages
     return response()->json(['errors'=>$validator->errors()->all()]);
     }
   public function update(Request $request)
@@ -124,34 +124,34 @@ class UserController extends Controller
            'password' => 'required|string|min:6|confirmed',
         ]);
         if ($validator->passes()) {
-        
-      
+
+
         $user = User::find($request->userid);
-        
+
             $user->firstname = $request->firstname;
             $user->lastname =$request->lastname;
             $user->phone=$request->phone;
             $user->address=$request->address;
             $user->password=bcrypt($request->password);
             $user->save();
-    
+
        return response()->json(['success'=>'success']);
        }
-    //return the errors messages 
+    //return the errors messages
     return response()->json(['errors'=>$validator->errors()->all()]);
     }
-  public function verifyEmail(Request $request){
-       
+    public function verifyEmail(Request $request){
+
       $this->validate($request,[
           'emailtokenv'=>'required'
       ]);
       $token = $request->emailtokenv;
       $user = User::where('emailtokenv',$token)->first();
-     
+
       if($user != null){
         if($user->email_verification == true){
             Session::flash('alert-info','The email already verified');
-            return back(); 
+            return back();
         }
         $user->emailtokenv = '';
         $user->email_verification = true;
@@ -159,7 +159,7 @@ class UserController extends Controller
         Session::flash('alert-success','Thanks for confirming your email');
         return view($this->lang().'.emailIsVerified');
       }else{
-        Session::flash('alert-danger','your token is invalid or email has been already verified '); 
+        Session::flash('alert-danger','your token is invalid or email has been already verified ');
       }
       return back();
     }
@@ -168,15 +168,15 @@ class UserController extends Controller
       if($user != null){
         if($user->email_verification == 1){
             Session::flash('alert-info','The email already verified');
-            return back(); 
+            return back();
         }
         $user->emailtokenv = '';
         $user->email_verification = 1;
         $user->save();
         Session::flash('alert-success','Thanks for confirming your email');
-        
+
       }else{
-        Session::flash('alert-warning','your token is invalid or email has been already verified '); 
+        Session::flash('alert-warning','your token is invalid or email has been already verified ');
       }
       return view($this->lang().'.emailIsVerified');
     }
@@ -211,8 +211,11 @@ class UserController extends Controller
 
       return response()->json(['success'=>'success']);
       }
-        //return the errors messages 
+        //return the errors messages
         return response()->json(['errors'=>$validator->errors()->all()]);
+    }
+    public function authenticated(){
+        return response()->json(Auth::id());
     }
     /**
      * Display the specified resource.
@@ -248,14 +251,14 @@ class UserController extends Controller
         //
     }
     //////////////////////////////////////////////
-    //get the user favorite page 
+    //get the user favorite page
     public function favorites_page(){
       return view($this->lang().'.favorites') ;
     }
-    //favorited items 
+    //favorited items
     public function getFavorites($user_id){
         $favorites = User::findorfail($user_id)->favorites();
- 
+
         return response()->json($favorites->pluck('sku'));
     }
     //add to favorites
@@ -283,7 +286,7 @@ class UserController extends Controller
          }
     }
     public function removeFavorite($id){
-    
+
       $favorite = Favorites::where('sku',$id)->first();
       $favorite->delete();
       if($this->lang() == 'Ar'){
@@ -295,14 +298,14 @@ class UserController extends Controller
     public function cart_page(){
       return view($this->lang().'.cart');
     }
-    //cart items 
+    //cart items
     public function getCartItems($user_id){
       $cartitems = User::findorfail($user_id)->cartItems()->select('sku','quantity')->get()->toJson();;
       return ( $cartitems);
       return response()->json($cartitems->toArray());
     }
     public function addCartItem(Request $request){
-    
+
       $validator = Validator::make($request->all(),[
         'user_id'=>'required',
         'sku'=>'required',
@@ -328,7 +331,7 @@ class UserController extends Controller
       }
     }
     public function removeCartItem($id){
-        
+
       $cart = Cart::where('sku',$id)->first();
       $cart->delete();
       return response()->json(['msg'=>'removed from cart successfuly']);
@@ -339,7 +342,7 @@ class UserController extends Controller
     public function tickets(){
       return view($this->lang().'.dashboard.tickets');
     }
-     //single page ticket 
+     //single page ticket
     public function showTicket($id){
       $ticket =  Ticket::find($id);
       return view($this->lang().'.dashboard.singleTicket',compact('ticket'));
@@ -349,18 +352,18 @@ class UserController extends Controller
       return response()->json(Ticket::where('user_id',Auth::id())->with('user')->latest()->get());
     }
     public function add_ticket_reply($id,Request $request){
-     
+
       $this->validate($request,[
         'user_id'=>'required',
         'content'=>'string|required',
       ]);
-     
-      
+
+
       $re = Reply::create([
         'user_id'=>$request->user_id,
         'ticket_id'=>$id,
         'content'=>$request->content,
-        
+
       ]);
       if($request->addfile != null){
         $fileName = time().'.'.$request->addfile->getClientOriginalExtension();
@@ -403,7 +406,7 @@ class UserController extends Controller
       }
       return redirect()->route('user.tickets');
     }
-    //the orders page 
+    //the orders page
     public function orders(){
       return view($this->lang().'.dashboard.orders');
     }
@@ -418,14 +421,14 @@ class UserController extends Controller
     }
     public function getmyordersbyid($order_id){
         //here we use where because we are receiving a string not a number
-        
+
         $orders = Order::with('user')->where('user_id',Auth::id())->where('id','like','%'.$order_id.'%')->paginate(1);
 
         return response()->json($orders);
     }
     //check the auth user billing information completed or not
     public function checkbillinginfo(){
-        
+
       $billinginfo = BillingInfo::where('user_id',Auth::id())->first();
       if($billinginfo && ($billinginfo->address_line1 !='') && ($billinginfo->country != '') &&
        ($billinginfo->postcode !='')){
@@ -434,8 +437,8 @@ class UserController extends Controller
        return response()->json(['res'=>'failed']);
     }
     public function process_payment(Request $request){
-      
-      
+
+
         $res = $this->p->createOrder($request);
         if($res->data->status == 'success'){
           $real_data = $res->data->data;
@@ -461,13 +464,35 @@ class UserController extends Controller
     public function checkAdjustmentPriceStatus(){
       $adjustmentstatus = Shipping::first();
       return response()->json($adjustmentstatus);
-     
+
   }
     public function currentShippingCompany($country){
       $active_company_id = ShippingCompanies::where('state',1)->first()->id;
       $current_company = Shipping::where('country',$country)->where('company_id',$active_company_id)->first();
       return response()->json($current_company);
-     
+
     }
-   
+
+    /////////////////new work
+    public function verifyEmail2(Request $request){
+
+
+      $token = $request->emailtokenv;
+      $user = User::where('emailtokenv',$token)->first();
+
+      if($user != null){
+        if($user->email_verification == true){
+            return response()->json(['code'=>1,'message'=>'تم التفعيل من قبل']);
+        }
+        $user->emailtokenv = '';
+        $user->email_verification = true;
+        $user->save();
+        return response()->json(['code'=>1,'message'=>'تم التفعيل ، شكرا لك']);
+      }else{
+        return response()->json(['code'=>0,'message'=>'كود التفعيل غير صحيح']);
+
+      }
+
+    }
+
 }
