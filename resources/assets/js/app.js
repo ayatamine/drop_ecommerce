@@ -79,6 +79,7 @@ const store = new Vuex.Store({
         featuredProducts: [],
         productInViewer: null,
         user: null,
+        category_images: [],
         currentCategory: {
             name: {
                 ar: "كل المنتجات",
@@ -119,6 +120,12 @@ const store = new Vuex.Store({
         },
         productInViewer(state) {
             return state.productInViewer;
+        },
+        favorites(state) {
+            return state.favoritedProducts;
+        },
+        cartItems(state, ) {
+            return state.cartItems
         }
 
     },
@@ -153,22 +160,36 @@ const store = new Vuex.Store({
         },
         setCurrentCategory(state, category) {
             state.currentCategory = category;
+        },
+        addToFavorites(state, product) {
+            state.favoritedProducts.push(product)
+        },
+        addToCart(state, product) {
+            state.cartItems.push(product)
+        },
+        removeFromCart(state, product) {
+
+            let new_cart_items = state.cartItems.filter(item => item.sku != product.sku)
+            state.cartItems = new_cart_items
         }
 
     },
     actions: {
         setCategories({ commit, state }) {
+            let category_images = new Map();
             let sessionCategories = localStorage.getItem('categories')
             if (!sessionCategories) {
                 let cat = new Set();
                 let allproducts = state.products.length > 0 ? state.products : state.featuredProducts;
                 allproducts.forEach(product => {
-                        product.categories.forEach(element => {
+                    product.categories.forEach(element => {
 
-                            cat.add(element);
-                        });
-                    })
-                    //remove duplicated categories
+                        cat.add(element);
+                        category_images.set(element.id, product.images[0]);
+                    });
+                })
+
+                //remove duplicated categories
                 const uniqueCategories = Array.from(cat)
                     .map(e => e['id'])
 
@@ -178,11 +199,41 @@ const store = new Vuex.Store({
                 // eliminate the dead keys & store unique objects
                 .filter(e => Array.from(cat)[e]).map(e => Array.from(cat)[e]);
                 //console.log('uniquecat',uniqueCategories)
+
                 commit('setCategories', uniqueCategories);
+                state.category_images = category_images
             } else {
                 commit('setCategories', JSON.parse(sessionCategories));
             }
         },
+        removeFromCart({ commit }, product) {
+
+            Swal.fire({
+                text: 'هل أنت متأكد من حدف المنتج من السلة',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#E64545',
+                confirmButtonText: 'نعم !',
+                cancelButtonText: 'لا !'
+            }).then((result) => {
+                console.log('prodto delete', product)
+                if (result.value) {
+                    axios.get('/user/carItems/' + product.sku + '/delete')
+                        .then(res => {
+                            Swal.fire({
+                                title: 'تم الحدف',
+                                text: res.data.msg,
+                                type: 'success'
+                            })
+                            commit('removeFromCart', product)
+                            return 'done'
+                        })
+
+                }
+            })
+        }
+
 
     }
 })

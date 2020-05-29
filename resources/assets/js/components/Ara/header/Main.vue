@@ -774,15 +774,81 @@
 								</div>
 							</div>
 						</div></div>
-				<div class="tt-stuck-parent-cart tt-parent-box"><div class="tt-cart tt-dropdown-obj">
-							<button class="tt-dropdown-toggle">
+				<div class="tt-stuck-parent-cart tt-parent-box">
+					<div v-if="auth" class="tt-cart tt-dropdown-obj">
+							<button class="tt-dropdown-toggle" @click="getCartItems">
 								<i class="icon-f-39"></i>
-								<span class="tt-badge-cart">3</span>
+								<span class="tt-badge-cart">0</span>
 							</button>
 							<div class="tt-dropdown-menu">
 								<div class="tt-mobile-add">
-									<h6 class="tt-title">SHOPPING CART</h6>
-									<button class="tt-close">Close</button>
+									<h6 class="tt-title">عربة التسوق</h6>
+									<button class="tt-close">إغلاق</button>
+								</div>
+								<div class="tt-dropdown-inner">
+									<div class="tt-cart-layout">
+										<!-- layout emty cart -->
+										<!-- <a href="empty-cart.html" class="tt-cart-empty">
+											<i class="icon-f-39"></i>
+											<p>No Products in the Cart</p>
+										</a> -->
+										<div class="tt-cart-content">
+											<div class="tt-item" v-if="!itemsloaded">
+													<a href="product.html">
+														<div class="tt-item-img">
+															<img src="wokiee_ecommerce/images/loader.svg" style="    height: 6rem;" data-src="images/product/product-01.jpg" alt="">
+															<img src="wokiee_ecommerce/images/loader.svg" style="    height: 6rem;" data-src="images/product/product-01.jpg" alt="">
+														</div>
+														<div class="tt-item-descriptions">
+
+														</div>
+													</a>
+													<div class="tt-item-close">
+														<a href="#" class="tt-btn-close"></a>
+													</div>
+											</div>
+											<div class="tt-cart-list" v-if="cartItems.length">
+												<div class="tt-item" v-for="(p,index) in cartItems" :key="index" >
+													<a href="product.html">
+														<div class="tt-item-img">
+															<img :src="p.images[0]" style="    height: 67px;" data-src="images/product/product-01.jpg" alt="">
+														</div>
+														<div class="tt-item-descriptions">
+															<h2 class="tt-title">{{ p.name.ar ? p.name.ar : p.name.en }}</h2>
+															<div class="tt-quantity">{{SkuQuantity[index] }} X</div> <div class="tt-price">{{currencySign}}{{ (currencyRate * (p.variations[0].sale_price)).toFixed(2)}}</div>
+														</div>
+													</a>
+													<div class="tt-item-close">
+														<a @click="removeFromCart(p,$event)" class="tt-btn-close"></a>
+													</div>
+												</div>
+											</div>
+											<div class="tt-cart-total-row" v-if="itemsloaded">
+												<div class="tt-cart-total-title">المجموع:</div>
+												<div class="tt-cart-total-price">{{currencySign}}{{totalPrice}}</div>
+											</div>
+											<div class="tt-cart-btn" v-if="itemsloaded">
+												<div class="tt-item">
+													<a href="#" class="btn">المواصلة الى الدفع</a>
+												</div>
+												<div class="tt-item">
+													<router-link v-if="auth" to="/cart" class="btn-link-02 tt-hidden-mobile">رؤية السلة</router-link>
+													<router-link v-if="!auth" to="/login" class="btn-link-02 tt-hidden-mobile">رؤية السلة</router-link>
+													<router-link to="/cart" v-if="auth"  class="btn btn-border tt-hidden-desctope">رؤية السلة</router-link>
+													<router-link to="/login" v-if="!auth"  class="btn btn-border tt-hidden-desctope">رؤية السلة</router-link>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+					<div v-else class="tt-cart tt-dropdown-obj">
+
+							<div class="tt-dropdown-menu">
+								<div class="tt-mobile-add">
+									<h6 class="tt-title">عربة التسوق</h6>
+									<button class="tt-close">إغلاق</button>
 								</div>
 								<div class="tt-dropdown-inner">
 									<div class="tt-cart-layout">
@@ -793,71 +859,34 @@
 										</a> -->
 										<div class="tt-cart-content">
 											<div class="tt-cart-list">
-												<div class="tt-item">
-													<a href="product.html">
-														<div class="tt-item-img">
-															<img src="images/loader.svg" data-src="images/product/product-01.jpg" alt="">
-														</div>
-														<div class="tt-item-descriptions">
-															<h2 class="tt-title">Flared Shift Dress</h2>
-															<ul class="tt-add-info">
-																<li>Yellow, Material 2, Size 58,</li>
-																<li>Vendor: Addidas</li>
-															</ul>
-															<div class="tt-quantity">1 X</div> <div class="tt-price">$12</div>
-														</div>
-													</a>
-													<div class="tt-item-close">
-														<a href="#" class="tt-btn-close"></a>
-													</div>
-												</div>
-												<div class="tt-item">
-													<a href="product.html">
-														<div class="tt-item-img">
-															<img src="images/loader.svg" data-src="images/product/product-02.jpg" alt="">
-														</div>
-														<div class="tt-item-descriptions">
-															<h2 class="tt-title">Flared Shift Dress</h2>
-															<ul class="tt-add-info">
-																<li>Yellow, Material 2, Size 58,</li>
-																<li>Vendor: Addidas</li>
-															</ul>
-															<div class="tt-quantity">1 X</div> <div class="tt-price">$18</div>
-														</div>
-													</a>
-													<div class="tt-item-close">
-														<a href="#" class="tt-btn-close"></a>
-													</div>
-												</div>
 											</div>
 											<div class="tt-cart-total-row">
-												<div class="tt-cart-total-title">SUBTOTAL:</div>
-												<div class="tt-cart-total-price">$324</div>
 											</div>
 											<div class="tt-cart-btn">
 												<div class="tt-item">
-													<a href="#" class="btn">PROCEED TO CHECKOUT</a>
+													<router-link to="/login" class="btn">تسجيل الدخول</router-link>
 												</div>
 												<div class="tt-item">
-													<a href="shopping_cart_02.html" class="btn-link-02 tt-hidden-mobile">View Cart</a>
-													<a href="shopping_cart_02.html" class="btn btn-border tt-hidden-desctope">VIEW CART</a>
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div></div>
+					</div>
+				</div>
 				<div class="tt-stuck-parent-account tt-parent-box"><div class="tt-account tt-dropdown-obj">
 							<button class="tt-dropdown-toggle"><i class="icon-f-94"></i></button>
 							<div class="tt-dropdown-menu">
 								<div class="tt-mobile-add">
-									<button class="tt-close">Close</button>
+									<button class="tt-close">إغلاق</button>
 								</div>
 								<div class="tt-dropdown-inner">
 									<ul>
 									    <li><a href="login.html"><i class="icon-f-94 ml-2"></i>حسابي</a></li>
-									    <li><a href="wishlist.html"><i class="icon-n-072 ml-2"></i>المفضلة</a></li>
+									    <li><router-link v-if="!auth"  to="/login"><i class="icon-n-072 ml-2"></i>المفضلة</router-link></li>
+									    <li><router-link v-if="auth"  to="/Favorites"><i class="icon-n-072 ml-2"></i>المفضلة</router-link></li>
 									    <li><a href="page404.html"><i class="icon-f-68 ml-2"></i>الدفع</a></li>
 									    <li><router-link to="/register" v-if="!auth"><i class="icon-f-94 ml-2"></i>إنشاء حساب</router-link></li>
 									    <li><router-link to="/login" v-if="!auth"><i class="icon-f-76 ml-2"></i>تسجيل الدخول</router-link></li>
@@ -894,17 +923,26 @@
 </template>
 
 <script>
+import currencyMixins from '../../../mixins/currencyMixins'
 
 export default {
     data(){
         return {
-
+				loading : true,
+				itemsloaded : false,
+				loaded_sku :[],
+				SkuQuantity :[],
+				totalPrice : 0,
         }
-    },
+	},
+	mixins:[currencyMixins],
     computed:{
         auth(){
             return this.$store.getters.auth
-        }
+		},
+		cartItems(){
+			return this.$store.getters.cartItems
+		}
     },
     created(){
         this.setUser();
@@ -922,7 +960,63 @@ export default {
            .catch(err => {
                console.log(err)
            })
-       }
+	   },
+	   getCartItems(){
+
+				this.loading = true
+				this.itemsloaded = false;
+				let sku_quantity_map = new Map();
+				if(!this.itemsloaded ){
+                    axios.get(`/users/${this.auth.id}/cartItems`)
+                    .then(res =>{
+						let res_sku =[]
+						res.data.forEach(item =>{
+							res_sku.push(item.sku)
+							this.SkuQuantity.push(item.quantity)
+						});
+
+                        /* if(!!this.products){
+                          this.favoritesProducts  = this.products.filter(item =>(res_sku.indexOf(item.sku) > -1 ) )
+                        } */
+                            let url = '/getProductBySku/';
+                            let promisedItems = [];
+
+                            res_sku.forEach(sku => {
+                                promisedItems.push(axios.get(url + sku))
+                            });
+							this.cartItems.length  = 0;
+                            Promise.all(promisedItems)
+                            .then(res => {
+
+								//console.log(res)
+								let tot = 0;
+                                res.forEach((p,i) =>{
+                                    //console.log(this.loaded_sku)
+
+                                        this.cartItems.push(p.data.product);
+										this.loaded_sku.push(p.data.product.sku);
+										tot+= ((this.currencyRate * (p.data.product.variations[0].sale_price )).toFixed(2)) * parseInt(this.SkuQuantity[i]);
+
+
+								})
+								//console.log(tot)
+								this.totalPrice = tot;
+								this.loading = false
+
+								this.itemsloaded = true
+                            })
+					})
+				}
+	   },
+	   removeFromCart(product,event){
+		 this.$store.dispatch('removeFromCart',product)
+		 .then(res => {
+			 if(res == 'done'){
+					this.getCartItems()
+			 }
+		 })
+
+	   }
     }
 }
 $(document).on('mouseenter','.tt-stuck-parent-menu .dropdown a',function(){

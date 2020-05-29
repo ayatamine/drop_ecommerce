@@ -287,7 +287,7 @@ class UserController extends Controller
     }
     public function removeFavorite($id){
 
-      $favorite = Favorites::where('sku',$id)->first();
+      $favorite = Favorites::where('user_id',Auth::id())->where('sku',$id)->first();
       $favorite->delete();
       if($this->lang() == 'Ar'){
             return response()->json(['msg'=>'تم حدف المنتج من المفضلة']);
@@ -325,16 +325,16 @@ class UserController extends Controller
           'quantity'=>$request->quantity,
         ]);
           return response()->json([
-            'msg'=>'the product added to cart successfuly',
+            'msg'=>'تمت إضافة المنتج الى السلة بنجاح',
             'type'=> 'success'
           ]);
       }
     }
     public function removeCartItem($id){
 
-      $cart = Cart::where('sku',$id)->first();
+      $cart = Cart::where('user_id',Auth::id())->where('sku',$id)->first();
       $cart->delete();
-      return response()->json(['msg'=>'removed from cart successfuly']);
+      return response()->json(['msg'=>'تم بنجاح']);
     }
     public function settings(){
       return view($this->lang().'.dashboard.settings');

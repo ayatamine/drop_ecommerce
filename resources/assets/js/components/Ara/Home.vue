@@ -9,8 +9,8 @@
 				<div class="col-sm-12 col-md-6">
 					<div class="row">
 						<div class="col-sm-6">
-								<router-link  v-for="i in 2" :key="i" class="tt-promo-box tt-one-child hover-type-2" :to="'/products/'+categories[i].name.ar">
-								<img src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg"
+								<router-link  v-for="i in 2" :key="i" class="tt-promo-box tt-one-child hover-type-2" :to="'/products/'+categories[i].name.ar.replace(' ','_')">
+								<img :src="categoriesImages.get(categories[i].id)"
 								@click="setCurrentCategory(categories[i])"
 								 class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-01.jpg'"
 								data-src="wokiee_ecommerce/images/promo/index-promo-img-01.jpg" alt="">
@@ -23,8 +23,8 @@
 								</router-link>
 						</div>
 						<div class="col-sm-6">
-							<router-link   class="tt-promo-box tt-one-child hover-type-2" v-if="!!categories[3]" :to="'/products/'+categories[3].name.ar">
-								<img src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg"
+							<router-link   class="tt-promo-box tt-one-child hover-type-2" v-if="!!categories[3]" :to="'/products/'+categories[3].name.ar.replace(' ','_')">
+								<img :src="categoriesImages.get(categories[3].id)"
 								@click="setCurrentCategory(categories[3])"
 								class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'"
 								 data-src="wokiee_ecommerce/images/promo/index-promo-img-03.jpg" alt="">
@@ -41,8 +41,8 @@
 				<div class="col-sm-12 col-md-6">
 					<div class="row" v-if="categories.slice(3).length">
 						<div class="col-sm-6" v-for="i in (0,2)" :key="i" >
-							<router-link  class="tt-promo-box tt-one-child hover-type-2" :to="'/products/'+categories.slice(3)[i].name.ar">
-								<img src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg"
+							<router-link  class="tt-promo-box tt-one-child hover-type-2" :to="'/products/'+categories.slice(3)[i].name.ar.replace(' ','_')">
+								<img :src="categoriesImages.get(categories.slice(3)[i].id)"
 								@click="setCurrentCategory(categories.slice(3)[i])"
 								class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-04.jpg'"
 								data-src="wokiee_ecommerce/images/promo/index-promo-img-04.jpg" alt="">
@@ -55,8 +55,8 @@
 							</router-link>
 						</div>
 						<div class="col-sm-12" v-if="!!categories.slice(6)[0]">
-							<router-link  class="tt-promo-box tt-one-child" :to="'/products/'+categories.slice(6)[0].name.ar">
-								<img src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg"
+							<router-link  class="tt-promo-box tt-one-child" :to="'/products/'+categories.slice(6)[0].name.ar.replace(' ','_')">
+								<img :src="categoriesImages.get(categories.slice(6)[0].id)"
 								@click="setCurrentCategory(categories.slice(6)[0])"
 								 class="catimg"  onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-06.jpg'"
 								 data-src="wokiee_ecommerce/images/promo/index-promo-img-06.jpg" alt="">
@@ -84,11 +84,13 @@
 				<div class="col-6 col-md-4 col-lg-3" v-for="(p,index) in featuredProducts.slice(0,8)" :key="index">
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview"
+							<a class="tt-btn-quickview"
 							@click="setProductInViewer(p,$event)"
 							 data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
+							<a class="tt-btn-wishlist"
+							@click="addPToFavorite(p,$event)"
+							></a>
+						<!-- 	<a class="tt-btn-compare"></a> -->
 							<a href="product.html">
 								<span class="tt-img"  v-if="loading"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-03.jpg" alt=""></span>
 								<span class="tt-img-roll-over" v-if="loading"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-03-02.jpg" alt=""></span>
@@ -105,7 +107,7 @@
 						<div class="tt-description">
 							<div class="tt-row">
 								<ul class="tt-add-info">
-									<li><a href="#">{{p.categories[0].name.ar }}</a></li>
+									<li><a >{{p.categories[0].name.ar }}</a></li>
 								</ul>
 								<div class="tt-rating">
 									<i class="icon-star"></i>
@@ -118,18 +120,18 @@
 							<h2 class="tt-title"><a href="product.html">{{p.name.ar}}</a></h2>
 							<div class="tt-product-inside-hover">
 								<div class="tt-row-btn">
-									<a href="#"
+									<a
 									 class="tt-btn-addtocart thumbprod-button-bg"  @click="addToCart(p,$event)"
 									  data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
 								</div>
 								<div class="tt-row-btn" >
-									<a href="#" class="tt-btn-quickview"
+									<a  class="tt-btn-quickview"
 									@click="setProductInViewer(p,$event)"
 									data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"
+									<a  class="tt-btn-wishlist"
 									@click="addPToFavorite(p,$event)"
 									></a>
-									<a href="#" class="tt-btn-compare"></a>
+								<!-- 	<a  class="tt-btn-compare"></a> -->
 								</div>
 							</div>
 						</div>
@@ -192,11 +194,11 @@
 				<div class="col-6 col-md-4 col-lg-3" v-for="(p,index) in featuredProducts.slice(8,14)" :key="index">
 					<div class="tt-product thumbprod-center">
 						<div class="tt-image-box">
-							<a href="#" class="tt-btn-quickview"
+							<a  class="tt-btn-quickview"
 							@click="setProductInViewer(p,$event)"
 							 data-toggle="modal" data-target="#ModalquickView"></a>
-							<a href="#" class="tt-btn-wishlist"></a>
-							<a href="#" class="tt-btn-compare"></a>
+							<a  class="tt-btn-wishlist"></a>
+							<!-- <a href="#" class="tt-btn-compare"></a> -->
 							<a href="product.html">
 								<span class="tt-img"  v-if="loading"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-03.jpg" alt=""></span>
 								<span class="tt-img-roll-over" v-if="loading"><img src="wokiee_ecommerce/images/loader.svg" data-src="wokiee_ecommerce/images/product/product-03-02.jpg" alt=""></span>
@@ -213,7 +215,7 @@
 						<div class="tt-description">
 							<div class="tt-row">
 								<ul class="tt-add-info">
-									<li><a href="#">{{p.categories[0].name.ar }}</a></li>
+									<li><a >{{p.categories[0].name.ar }}</a></li>
 								</ul>
 								<div class="tt-rating">
 									<i class="icon-star"></i>
@@ -226,14 +228,16 @@
 							<h2 class="tt-title"><a href="product.html">{{p.name.ar}}</a></h2>
 							<div class="tt-product-inside-hover">
 								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-addtocart thumbprod-button-bg"  @click="addToCart(p,$event)"
+									<a  class="tt-btn-addtocart thumbprod-button-bg"  @click="addToCart(p,$event)"
 									 data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
 								</div>
 								<div class="tt-row-btn">
-									<a href="#" class="tt-btn-quickview" @click="setProductInViewer(p,$event)"
+									<a  class="tt-btn-quickview" @click="setProductInViewer(p,$event)"
 									data-toggle="modal" data-target="#ModalquickView"></a>
-									<a href="#" class="tt-btn-wishlist"></a>
-									<a href="#" class="tt-btn-compare"></a>
+									<a  class="tt-btn-wishlist"
+									@click="addPToFavorite(p,$event)"
+									></a>
+									<!-- <a href="#" class="tt-btn-compare"></a> -->
 								</div>
 							</div>
 						</div>
@@ -358,6 +362,9 @@ export default {
       categories(){
           return this.$store.getters.categories
 	  },
+	  categoriesImages(){
+		  return this.$store.state.category_images;
+	  }
 
   }
 }
@@ -380,4 +387,8 @@ $(document).on('mouseleave','.tt-product.thumbprod-center',function(){
 .tt-product.thumbprod-center.hovered .tt-product-inside-hover{
 opacity: 1;
 }
+.tt-promo-box > img {
+    max-height: 22rem;
+}
+
 </style>

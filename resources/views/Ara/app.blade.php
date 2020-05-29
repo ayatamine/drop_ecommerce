@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="{{ asset('wokiee_ecommerce/css/rtl.css')}}">
     <style>
 		#tt-pageContent{    padding-top: 3rem;}
+		.tt-product a,.tt-item a{cursor: pointer;}
 	</style>
     <title>@yield('title')</title>
     @yield('css')
@@ -26,9 +27,9 @@
 
     <global-index></global-index>
 
-    <a href="#" class="tt-back-to-top">BACK TO TOP</a>
+    <a href="#" class="tt-back-to-top">رجوع للأعلى</a>
 <!-- modal (AddToCartProduct) -->
-<div class="modal  fade"  id="modalAddToCartProduct" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+{{-- <div class="modal  fade"  id="modalAddToCartProduct" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content ">
 			<div class="modal-header">
@@ -51,7 +52,7 @@
 							</div>
 							<div class="tt-modal-product">
 								<div class="tt-img">
-									<img src="{{-- {{asset('wokiee_ecommerce/images/loader.svg')}}--}}" data-src="{{asset('wokiee_ecommerce/images/product/product-01.jpg')}}" alt="">
+									<img src="{{asset('wokiee_ecommerce/images/loader.svg')}}" data-src="{{asset('wokiee_ecommerce/images/product/product-01.jpg')}}" alt="">
 								</div>
 								<h2 class="tt-title"><a href="product.html">Flared Shift Dress</a></h2>
 								<div class="tt-qty">
@@ -80,7 +81,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> --}}
 
 <!-- modalVideoProduct -->
 <div class="modal fade"  id="modalVideoProduct" tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">

@@ -201,10 +201,12 @@
 							<div class="col-6 col-md-4 tt-col-item" v-for="(p,i) in currentProducts" :key="i">
 								<div class="tt-product thumbprod-center">
 									<div class="tt-image-box">
-										<a href="#" class="tt-btn-quickview" @click="setProductInViewer(p,$event)"
+										<a  class="tt-btn-quickview" @click="setProductInViewer(p,$event)"
                                         data-toggle="modal" data-target="#ModalquickView"	data-tooltip="Quick View" data-tposition="left"></a>
-										<a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
-										<a href="#" class="tt-btn-compare" data-tooltip="Add to Compare" data-tposition="left"></a>
+										<a @click="addPToFavorite(p,$event)"
+                                        class="tt-btn-wishlist"
+                                        data-tooltip="Add to Wishlist" data-tposition="left"></a>
+										<!-- <a href="#" class="tt-btn-compare" data-tooltip="Add to Compare" data-tposition="left"></a> -->
 										<a href="product.html">
 											<span class="tt-img"  v-if="!loading"><img onerror="this.onerror=null; this.src='wokiee_ecommerce/images/promo/index-promo-img-03.jpg'"
                                             :src="p.images[0]" data-src="wokiee_ecommerce/images/product/product-03.jpg" alt=""></span>
@@ -228,13 +230,14 @@
 										</div>
 										<div class="tt-product-inside-hover">
 											<div class="tt-row-btn">
-												<a href="#" class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
+												<a  class="tt-btn-addtocart thumbprod-button-bg" data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
 											</div>
 											<div class="tt-row-btn">
-												<a href="#" class="tt-btn-quickview" @click="setProductInViewer(p,$event)"
+												<a  class="tt-btn-quickview" @click="setProductInViewer(p,$event)"
                                                 data-toggle="modal" data-target="#ModalquickView"></a>
-												<a href="#" class="tt-btn-wishlist"></a>
-												<a href="#" class="tt-btn-compare"></a>
+												<a  class="tt-btn-wishlist"
+                                                @click="addPToFavorite(p,$event)"></a>
+												<!-- <a  class="tt-btn-compare"></a> -->
 											</div>
 										</div>
 									</div>

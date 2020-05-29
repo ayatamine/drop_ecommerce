@@ -8,6 +8,9 @@ import Products from '../components/Ara/Products.vue';
 import Register from '../components/Ara/Register.vue';
 import Login from '../components/Ara/Login.vue';
 import VerifyEmail from '../components/Ara/VerifyEmail.vue';
+import Favorites from '../components/Ara/Favorites.vue';
+import Cart from '../components/Ara/Cart.vue';
+
 
 const routes = [
     { path: '/', component: Home, name: 'الرئيسية' },
@@ -15,6 +18,8 @@ const routes = [
     { path: '/register', component: Register, name: 'حساب جديد' },
     { path: '/login', component: Login, name: 'تسجيل الدخول' },
     { path: '/verifyEmail', component: VerifyEmail, name: 'تفعيل البريد الالكتروني' },
+    { path: '/Favorites', component: Favorites, name: 'المفضلة' },
+    { path: '/Cart', component: Cart, name: 'عربة التسوق' },
 ];
 
 const router = new VueRouter({

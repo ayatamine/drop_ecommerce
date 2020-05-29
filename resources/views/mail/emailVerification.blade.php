@@ -60,7 +60,7 @@ $style = [
                 <tr>
                     <td style="{{ $style['email-masthead'] }}">
                         <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                    
+
                         </a>
                     </td>
                 </tr>
@@ -74,26 +74,26 @@ $style = [
                                     <!-- Greeting -->
                                     <h1 style="{{ $style['header-1'] }}">
 
-                                    hello, 
-                             
+                                    hello,
+
 <br>
 
                                     </h1>
-                                        {{$user->firstname.' '.$user->lastname}} please confirm your email using 
+                                        {{$user->firstname.' '.$user->lastname}} please confirm your email using
                                         the link below
 
                                         <br>
-                                        <br>
+                                        {{-- <br>
                                           <a href="{{route('frontEnd.email.verifyg',['token'=>$user->emailtokenv])}}" style="{{$style['email-link']}}">verify email</a>
-                                        <br>
+                                        <br> --}}
                                         <br>
                                         Or copy and paste the code bellow in the confirmation page
                                         <br>
                                         <p>{{$user->emailtokenv}}</p>
-                                        
+
                                     <!-- Intro -->
 
-                                  
+
                                     <!-- Outro -->
 
                                     <p style="{{ $style['paragraph'] }}">
